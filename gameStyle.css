@@ -1,0 +1,14 @@
+
+:root {
+    --background-color: #9DE8F9;
+
+    --color-red: #FF6347;
+    --color-blue: #4169E1;
+
+    --font-size4: 20px;
+}
+
+body {
+    background-color: var(--background-color);
+    font-family: Helvetica, Verdana, sans-serif;
+}
