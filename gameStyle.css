@@ -1,14 +1,75 @@
 
 :root {
-    --background-color: #9DE8F9;
+    --color-background: #9DE8F9;
 
     --color-red: #FF6347;
+    --color-green: #29B95C;
     --color-blue: #4169E1;
 
     --font-size4: 20px;
+    --font-size5: 30px;
+    --font-size6: 40px;
 }
 
 body {
-    background-color: var(--background-color);
+    background-color: #333;
     font-family: Helvetica, Verdana, sans-serif;
+}
+
+
+/*==============================================================|| Scanner */
+
+.container-scanner {
+    position: fixed;
+    bottom: 30px;
+    left: 20px;
+    right: 20px;
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    border: 1px solid red;
+}
+
+.scanArea {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 400px;
+    height: 400px;
+    border-radius: 50px;
+    box-shadow: inset -4px -4px 10px rgba(0, 0, 0, 0.3);
+
+    background-color: var(--color-red);
+    font-size: 100px;
+    color: white;
+
+    touch-action: none;    
+}
+
+.scanArea .scanInfo {
+    width: 70%;
+    white-space: nowrap;
+    font-family: sans-serif;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 5px 10px;
+    border-radius: 1vw;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 0.8em;
+    margin-top: 5px;
+}
+
+.touchPoint {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-color: rgb(208, 84, 84);
+    border-radius: 50%;
+    opacity: 0.7;
+    transform: translate(-50%, -50%);
 }
