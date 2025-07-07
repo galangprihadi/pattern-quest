@@ -8,12 +8,42 @@
     <link rel="stylesheet" href="gameStyle.css">
 </head>
 <body>
-    <!-- Scanner -->
-    <div class="container-scanner">
-        <div class="scanArea" id="scanArea1">?</div>
-        <div class="scanArea" id="scanArea2">?</div>
-        <div class="scanArea" id="scanArea3">?</div>
+    <!-- Game Info -->
+    <div class="container-info">
+        Information
     </div>
+
+    <!-- Question -->
+    <div class="question"></div>
+
+    <!-- Scanner -->
+    <div class="container-scanner"></div>
+
+    <script src="Reader.js"></script>
+    <script src="Pattern.js"></script>
+    <script src="GameEngine.js"></script>
+
+    <script>
+        const game = new GameEngine();
+
+        /*
+        const Reader1 = new Reader({
+            markerMode: true,
+            infoMode: true,
+        });
+
+        const Reader2 = new Reader({
+            markerMode: true,
+            infoMode: true,
+        });
+
+        const Reader3 = new Reader({
+            markerMode: true,
+            infoMode: true,
+        });
+        */
+
+    </script>
 
 </body>
 </html>

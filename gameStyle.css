@@ -11,60 +11,72 @@
     --font-size6: 40px;
 }
 
+html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
 body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     background-color: #333;
     font-family: Helvetica, Verdana, sans-serif;
 }
 
 
-/*==============================================================|| Scanner */
+/*==============================================================>> Scanner */
 
 .container-scanner {
     position: fixed;
-    bottom: 30px;
+    bottom: 0;
     left: 20px;
     right: 20px;
-
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
-
-    border: 1px solid red;
+    align-items: flex-start;
+    margin-bottom: 50px;
 }
 
-.scanArea {
+.scanner {
     position: relative;
-
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-
     width: 220px;
     height: 220px;
     border-radius: 20%;
     box-shadow: inset -4px -4px 10px rgba(0, 0, 0, 0.3);
-
     background-color: var(--color-red);
-    font-size: 100px;
     color: white;
-
-    touch-action: none;    
+    touch-action: none;
 }
 
-.scanArea .scanInfo {
-    width: 70%;
+.scanner:nth-child(even) {
+    margin-top: 250px;
+}
+
+.scanner .info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    padding: 3px 5px;
+    border-radius: 30px;
+    margin-top: 15px;
+
+    font-size: 10px;
     white-space: nowrap;
-    font-family: sans-serif;
+    color: #333;
     background-color: rgba(255, 255, 255, 0.8);
-    padding: 5px 10px;
-    border-radius: 1vw;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    font-size: 0.8em;
-    margin-top: 5px;
+
+    transform: translateY(-50px);
 }
 
-.touchPoint {
+.tipMarker {
     position: absolute;
     width: 80px;
     height: 80px;
@@ -72,4 +84,34 @@ body {
     border-radius: 50%;
     opacity: 0.7;
     transform: translate(-50%, -50%);
+}
+
+
+/*==============================================================>> Question */
+
+.question {
+    position: fixed;
+    top: 80px;
+    width: 270px;
+    height: 270px;
+    border-radius: 20%;
+    background-color: var(--color-blue);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+
+/*==============================================================>> Game Info */
+
+.container-info {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 80%;
+    padding: 5px 15px;
+    border-radius: 30px;
+    margin-top: 15px;
+
+    background-color: rgba(255, 255, 255, 0.8);
 }
