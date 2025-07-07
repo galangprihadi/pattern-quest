@@ -1,6 +1,6 @@
 
 
-class Pattern {
+class Question {
     pattCode = [
         [1, 5, 9], [1, 5, 10], [1, 5, 11], [1, 5, 12], [1, 6, 9], [1, 6, 10], [1, 6, 11], [1, 6, 12], 
         [1, 7, 9], [1, 7, 10], [1, 7, 11], [1, 7, 12], [1, 8, 9], [1, 8, 10], [1, 8, 11], [1, 8, 12],
@@ -12,40 +12,30 @@ class Pattern {
         [4, 7, 9], [4, 7, 10], [4, 7, 11], [4, 7, 12], [4, 8, 9], [4, 8, 10], [4, 8, 11], [4, 8, 12],
     ];
 
-    pattPaths = [
-        "images/patterns/patA1.png",
-        "images/patterns/patA2.png",
-        "images/patterns/patA3.png",
-        "images/patterns/patA4.png",
-        "images/patterns/patA5.png",
-        "images/patterns/patA6.png",
-        "images/patterns/patA7.png",
-        "images/patterns/patA8.png",
-        "images/patterns/patA9.png",
-        "images/patterns/patA10.png",
-        "images/patterns/patA11.png",
-        "images/patterns/patA12.png",
-    ];
+    constructor(qData) {
+        this.numOfQuestion = qData.numOfQuestion;
+        this.pattPaths = qData.patternPaths;
 
-    constructor() {
-        this.shuffleQuestion();
         this.currentQuestion = 0;
         this.eQuestion = document.querySelector(".question");
+        this.pattImages = {};
 
-        this.loadAllImages(this.pattPaths)
-            .then(images => {
-                this.pattImages = images;
-            })
-            .catch((error) => {
-
-            });
-
-        this.eQuestion.style.backgroundImage = `url(${this.pattImages[1].src})`;
+        this.initializePatterns();
     }
 
-    
+    async initializePatterns() {
+        try {
+            this.shuffleQuestions();
+            const images = await this.loadAllImages(this.pattPaths);
+            this.pattImages = images;
+            this.setQuestion();
+        } 
+        catch (error) {
+            console.log("initializePatterns error : ");
+        }
+    }
 
-    loadAllImages(paths){
+    loadAllImages(paths) {
         const loadPromises = [];
         const loadedImages = {};
 
@@ -54,20 +44,22 @@ class Pattern {
 
             const promise = new Promise((resolve, reject) => {
                 img.onload = () => {
-                    loadedImages[index+1] = img; 
-                    console.log(`Gambar berhasil dimuat: ${path}`);
+                    loadedImages[index + 1] = img; 
                     resolve();
                 };
                 img.onerror = () => {
                     reject(new Error(`Failed to load image: ${path}`)); 
                 };
             });
+
+            img.src = path;
+            loadPromises.push(promise);
         });
 
         return Promise.all(loadPromises).then(() => loadedImages);
     }
 
-    shuffleQuestion() {
+    shuffleQuestions() {
         for (let i=0; i < this.pattCode.length; i++) {
             const randomIndex = Math.floor(Math.random() * this.pattCode.length);
             const temp = this.pattCode[i];
@@ -77,6 +69,15 @@ class Pattern {
     }
 
     setQuestion() {
-        this.eQuestion.style.backgroundImage = `url('${this.pattImage[0]}'), url('${this.pattImage[1]}'), url('${this.pattImage[2]}')`;
+        this.combCode = this.pattCode[this.currentQuestion];
+
+        const img1 = this.pattImages[this.combCode[0]];
+        const img2 = this.pattImages[this.combCode[1]];
+        const img3 = this.pattImages[this.combCode[2]];
+
+        if (img1 && img2 && img3) {
+            this.eQuestion.style.backgroundImage = `url("${img1.src}"), url("${img2.src}"), url("${img3.src}")`
+        }
+        
     }
 }

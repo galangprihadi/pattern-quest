@@ -1,6 +1,6 @@
 
 class GameEngine {
-    constructor() {
+    constructor(geData) {
         this.readerA = new Reader({
             markerMode: true,
             infoMode: true,
@@ -16,8 +16,14 @@ class GameEngine {
             infoMode: true,
         });
 
-        this.question = new Pattern();
-        this.question.setQuestion();
+        this.question = new Question({
+            numOfQuestion: geData.numOfQuestion,
+            patternPaths: geData.patternPaths,
+        });
+
+        setTimeout(() => {
+            //this.question.setQuestion();
+        }, 1000);
 
         this.gameLoop();
     }
