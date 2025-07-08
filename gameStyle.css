@@ -63,7 +63,7 @@ body {
 }
 
 
-/*==============================================================>> Front Panel */
+/*==============================================================>> Start Panel */
 
 .start-panel {
     position: fixed;
@@ -76,7 +76,6 @@ body {
     justify-content: flex-start;
     align-items: center;
     gap: 20px;
-    padding-top: 15vh;
     font-size: var(--font-size4);
     font-weight: 500;
     text-align: center;
@@ -96,6 +95,7 @@ body {
     align-items: center;
     width: 220px;
     height: 220px;
+    margin-top: 170px;
     border-radius: 20%;
     border: 3px solid var(--color-orange);
     box-shadow: inset -4px -4px 10px rgba(0, 0, 0, 0.3);
@@ -107,6 +107,7 @@ body {
     touch-action: none;
     color: white;
     font-size: 15px;
+    
 }
 
 .start-panel button {
@@ -124,11 +125,58 @@ body {
 }
 
 
+/*==============================================================>> Game Info */
+
+.container-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    height: 80px;
+    border-radius: 50px;
+    margin-top: 30px;
+    background-color: var(--color-whiteSmoke);
+}
+
+.container-info .info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 200px;
+    font-size: var(--font-size4);
+    font-weight: 500;
+}
+
+.container-info .button-group {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-width: 200px;
+}
+
+.container-info .button-group button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    margin: 15px;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--color-blue);
+    font-size: 25px;
+    color: var(--color-whiteSmoke);
+}
+
+.container-info .button-group button.red {
+    background-color: var(--color-red);
+}
+
 /*==============================================================>> Question */
 
 .question {
     position: fixed;
-    top: 130px;
+    top: 170px;
     width: 270px;
     height: 270px;
     border-radius: 20%;
@@ -200,15 +248,3 @@ body {
 }
 
 
-/*==============================================================>> Game Info */
-
-.container-info {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    width: 80%;
-    padding: 5px 15px;
-    border-radius: 30px;
-    margin-top: 15px;
-    background-color: rgba(255, 255, 255, 0.8);
-}
