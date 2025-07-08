@@ -5,6 +5,9 @@ class Reader {
         this.markerMode = rData.markerMode || false;
         this.infoMode = rData.infoMode || false;
 
+        this.pattPaths = rData.patternPaths;
+        this.setImages();
+
         this.tagRef = rData.tagRef || 80,   // Tag reference (shortest tag) in pixel value  |  the shortest tag is 18 mm
         this.acceptedRange = 5,             // Acceptance Value for reading process (in unit value)
 
@@ -100,6 +103,11 @@ class Reader {
         this.unitValue = this.getUnitValue(touchPos);
         this.TagId = this.getTagId(touchPos);
 
+        if (this.TagId > 0) {
+            this.eScanner.style.backgroundColor = "var(--color-whiteSmoke)";
+            this.eScanner.style.backgroundImage = `url("${this.pattImages[this.TagId].src}")`;
+        }
+
         if (touches.length > 0) {
             //if (this.infoMode) this.eInfo.textContent = `${touches.length} tc | ${this.pixelValue} px | ${this.unitValue} un`;
             if (this.infoMode) this.eInfo.textContent = `Tag ID ${this.TagId}`;
@@ -165,5 +173,41 @@ class Reader {
         }
 
         return this.TagId;
+    }
+
+    loadAllImages(paths) {
+        const loadPromises = [];
+        const loadedImages = {};
+
+        paths.forEach((path, index) => {
+            const img = new Image();
+
+            const promise = new Promise((resolve, reject) => {
+                img.onload = () => {
+                    loadedImages[index + 1] = img; 
+                    resolve();
+                };
+                img.onerror = () => {
+                    reject(new Error(`Failed to load image: ${path}`)); 
+                };
+            });
+
+            img.src = path;
+            loadPromises.push(promise);
+        });
+
+        return Promise.all(loadPromises).then(() => loadedImages);
+    }
+
+    async setImages() {
+        try {
+            const images = await this.loadAllImages(this.pattPaths);
+            this.pattImages = images;
+            //this.setQuestion();
+            this.eScanner.style.backgroundImage = `url(${this.pattImages[1]})`
+        } 
+        catch (error) {
+            console.log("setImages() error : ");
+        }
     }
 }

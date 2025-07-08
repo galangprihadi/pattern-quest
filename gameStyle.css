@@ -5,6 +5,9 @@
     --color-red: #FF6347;
     --color-green: #29B95C;
     --color-blue: #4169E1;
+    --color-whiteSmoke: #f0f0f0;
+    --color-yellow: #ffc32b;
+    --color-orange: #ff872b;
 
     --font-size4: 20px;
     --font-size5: 30px;
@@ -15,6 +18,8 @@ html {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    
+    border: 2px solid red;
 }
 
 body {
@@ -22,8 +27,108 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background-color: #333;
+
+    height: 80vh;
+
+    background-image: url("images/bgMain.png");
+    background-size: 100vw 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+
     font-family: Helvetica, Verdana, sans-serif;
+
+    border: 2px solid blue;
+}
+
+
+/*==============================================================>> Main Panel */
+
+.game-panel {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    background-image: url("images/bgGame.png");
+    background-size: 100vw 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+
+/*==============================================================>> Front Panel */
+
+.start-panel {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+    padding-top: 10vh;
+    font-size: var(--font-size4);
+    font-weight: 500;
+    text-align: center;
+    background-color: var(--color-whiteSmoke);
+    background-image: url("images/bgMain.png");
+    background-size: 100vw 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+    z-index: 5;
+}
+
+.start-panel .scanner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 220px;
+    height: 220px;
+    border-radius: 20%;
+    box-shadow: inset -4px -4px 10px rgba(0, 0, 0, 0.3);
+    background-color: var(--color-blue);
+    touch-action: none;
+    color: white;
+    font-size: 15px;
+}
+
+.start-panel button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 30px;
+    border-radius: 200px;
+    border: none;
+    background-color: var(--color-red);
+    color: white;
+    font-weight: bold;
+    font-size: var(--font-size4);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+
+/*==============================================================>> Question */
+
+.question {
+    position: fixed;
+    top: 130px;
+    width: 270px;
+    height: 270px;
+    border-radius: 20%;
+    background-color: var(--color-whiteSmoke);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 
@@ -40,7 +145,7 @@ body {
     margin-bottom: 50px;
 }
 
-.scanner {
+.container-scanner .scanner {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -50,13 +155,16 @@ body {
     height: 220px;
     border-radius: 20%;
     box-shadow: inset -4px -4px 10px rgba(0, 0, 0, 0.3);
-    background-color: var(--color-red);
     color: white;
     touch-action: none;
+    background-color: var(--color-orange);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .scanner:nth-child(even) {
-    margin-top: 250px;
+    margin-top: 240px;
 }
 
 .scanner .info {
@@ -67,12 +175,10 @@ body {
     padding: 3px 5px;
     border-radius: 30px;
     margin-top: 15px;
-
     font-size: 10px;
     white-space: nowrap;
     color: #333;
     background-color: rgba(255, 255, 255, 0.8);
-
     transform: translateY(-50px);
 }
 
@@ -87,21 +193,6 @@ body {
 }
 
 
-/*==============================================================>> Question */
-
-.question {
-    position: fixed;
-    top: 80px;
-    width: 270px;
-    height: 270px;
-    border-radius: 20%;
-    background-color: whitesmoke;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-
-
 /*==============================================================>> Game Info */
 
 .container-info {
@@ -112,6 +203,5 @@ body {
     padding: 5px 15px;
     border-radius: 30px;
     margin-top: 15px;
-
     background-color: rgba(255, 255, 255, 0.8);
 }

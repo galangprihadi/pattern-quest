@@ -2,18 +2,21 @@
 class GameEngine {
     constructor(geData) {
         this.readerA = new Reader({
-            markerMode: true,
+            markerMode: false,
             infoMode: true,
+            patternPaths: geData.patternPaths,
         });
 
         this.readerB = new Reader({
-            markerMode: true,
+            markerMode: false,
             infoMode: true,
+            patternPaths: geData.patternPaths,
         });
 
         this.readerC = new Reader({
-            markerMode: true,
+            markerMode: false,
             infoMode: true,
+            patternPaths: geData.patternPaths,
         });
 
         this.question = new Question({
@@ -39,6 +42,12 @@ class GameEngine {
         }
 
         step();
+    }
+
+    calibrateTag(refValue){
+        this.readerA.tagRef = refValue;
+        this.readerB.tagRef = refValue;
+        this.readerC.tagRef = refValue;
     }
 
     getAnswer() {

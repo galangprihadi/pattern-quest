@@ -8,9 +8,19 @@
     <link rel="stylesheet" href="gameStyle.css">
 </head>
 <body>
-    <!-- Game Info -->
-    <div class="container-info">
-        Information
+    <!-- Start Panel -->
+    <div class="start-panel">
+        <div class="scanner"></div>
+        Place the Screen Tag Key<br>
+        to Start the Game
+        <button onclick="btnFullscreen()">Full Screen</button>
+    </div>
+
+    <!-- Game Panel -->
+    <div class="game-panel">
+        <div class="container-info">
+            Information
+        </div>
     </div>
 
     <!-- Question -->
@@ -22,44 +32,7 @@
     <script src="Reader.js"></script>
     <script src="Question.js"></script>
     <script src="GameEngine.js"></script>
-
-    <script>
-        const game = new GameEngine({
-            numOfQuestion: 10,
-            patternPaths: [
-                "images/patterns/patA1.png",
-                "images/patterns/patA2.png",
-                "images/patterns/patA3.png",
-                "images/patterns/patA4.png",
-                "images/patterns/patA5.png",
-                "images/patterns/patA6.png",
-                "images/patterns/patA7.png",
-                "images/patterns/patA8.png",
-                "images/patterns/patA9.png",
-                "images/patterns/patA10.png",
-                "images/patterns/patA11.png",
-                "images/patterns/patA12.png"
-            ]
-        });
-
-        /*
-        const Reader1 = new Reader({
-            markerMode: true,
-            infoMode: true,
-        });
-
-        const Reader2 = new Reader({
-            markerMode: true,
-            infoMode: true,
-        });
-
-        const Reader3 = new Reader({
-            markerMode: true,
-            infoMode: true,
-        });
-        */
-
-    </script>
+    <script src="gameScript.js"></script>
 
 </body>
 </html>
