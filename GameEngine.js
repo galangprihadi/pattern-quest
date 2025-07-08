@@ -3,19 +3,19 @@ class GameEngine {
     constructor(geData) {
         this.readerA = new Reader({
             markerMode: false,
-            infoMode: true,
+            infoMode: false,
             patternPaths: geData.patternPaths,
         });
 
         this.readerB = new Reader({
             markerMode: false,
-            infoMode: true,
+            infoMode: false,
             patternPaths: geData.patternPaths,
         });
 
         this.readerC = new Reader({
             markerMode: false,
-            infoMode: true,
+            infoMode: false,
             patternPaths: geData.patternPaths,
         });
 
@@ -27,6 +27,8 @@ class GameEngine {
         setTimeout(() => {
             //this.question.setQuestion();
         }, 1000);
+
+        this.gameRunning = true;
 
         this.gameLoop();
     }
@@ -54,12 +56,22 @@ class GameEngine {
         let answers = [this.readerA.TagId, this.readerB.TagId, this.readerC.TagId];
         answers = answers.sort(function(a, b){return a - b});
 
-        if (JSON.stringify(this.question.combCode) === JSON.stringify(answers)) {
-            document.querySelector(".container-info").textContent = "Correct";
+        document.querySelector(".container-info").textContent = `${this.question.combCode} | ${answers}`;
+
+        if (answers[0] > 0 && answers[1] > 0 && answers[2] > 0 ) {
+            if (JSON.stringify(this.question.combCode) === JSON.stringify(answers)) {
+                this.question.nextQuestion(true);
+                
+            }
+            else {
+                this.question.nextQuestion(false);
+            }
+
+            this.readerA.resetTag();
+            this.readerB.resetTag();
+            this.readerC.resetTag();
         }
-        else {
-            document.querySelector(".container-info").textContent = `${this.question.combCode} | ${answers}`;
-        }
+        
     }
 
     getAnswer() {

@@ -56,6 +56,14 @@ class Reader {
         }
     }
 
+    resetTag() {
+        this.TagId = 0;
+        this.unitValue = 0;
+        this.pixelValue = 0;
+
+        this.eScanner.removeAttribute("style");
+    }
+
     readTag(event) {
         event.preventDefault();
 

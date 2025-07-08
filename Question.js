@@ -81,5 +81,27 @@ class Question {
         
     }
 
-    
+    nextQuestion(isCorrect) {
+        if (this.currentQuestion < this.numOfQuestion - 1) {
+            if (isCorrect) {
+                this.eQuestion.style.backgroundColor = "var(--color-correct)";
+            }
+            else {
+                this.eQuestion.style.backgroundColor = "var(--color-incorrect)";
+            }
+            
+            setTimeout(() => {
+                this.currentQuestion += 1;
+                this.eQuestion.removeAttribute("style");
+                this.setQuestion();
+            }, 1000);
+
+            
+            
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
