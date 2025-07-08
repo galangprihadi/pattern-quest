@@ -74,7 +74,7 @@ function gameStartScanner(gameEngine) {
     });
 }
 
-function fullsreen() {
+function fullscreen() {
     // Fullscreen
     if (document.documentElement.requestFullscreen) {
         document.documentElement.requestFullscreen();

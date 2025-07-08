@@ -34,7 +34,7 @@ class GameEngine {
     gameLoop() {
         const step = () => {
 
-            document.querySelector(".container-info").textContent = this.getAnswer();
+            this.checkAnswer();
 
             requestAnimationFrame(()=>{
                 step();
@@ -48,6 +48,18 @@ class GameEngine {
         this.readerA.tagRef = refValue;
         this.readerB.tagRef = refValue;
         this.readerC.tagRef = refValue;
+    }
+
+    checkAnswer() {
+        let answers = [this.readerA.TagId, this.readerB.TagId, this.readerC.TagId];
+        answers = answers.sort(function(a, b){return a - b});
+
+        if (JSON.stringify(this.question.combCode) === JSON.stringify(answers)) {
+            document.querySelector(".container-info").textContent = "Correct";
+        }
+        else {
+            document.querySelector(".container-info").textContent = `${this.question.combCode} | ${answers}`;
+        }
     }
 
     getAnswer() {
