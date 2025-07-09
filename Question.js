@@ -1,3 +1,14 @@
+////////////////////////////////////////////=========================
+///////////////////////////////////////////          QUESTION CLASS
+//////////////////////////////////////////===========================
+
+//==== Class Structure ====//
+//                         //
+//     GameEngine          //
+//       |--> Reader       //
+//       |--> Question     //
+//                         //
+//=========================//
 
 
 class Question {
@@ -17,7 +28,7 @@ class Question {
         this.pattPaths = qData.patternPaths;
 
         this.currentQuestion = 0;
-        this.eQuestion = document.querySelector(".question");
+        this.eQuestion = document.getElementById("question");
         this.pattImages = {};
 
         this.initializePatterns();

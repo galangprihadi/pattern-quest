@@ -11,6 +11,8 @@
     --color-correct: #29B95C;
     --color-incorrect: #FF6347;
 
+    --font-size2: 10px;
+    --font-size3: 15px;
     --font-size4: 20px;
     --font-size5: 30px;
     --font-size6: 40px;
@@ -20,8 +22,6 @@ html {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    
-    border: 2px solid red;
 }
 
 body {
@@ -29,23 +29,78 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-
-    height: 80vh;
-
-    background-image: url("images/bgMain.png");
-    background-size: 100vw 100vh;
-    background-repeat: no-repeat;
-    background-position: center center;
-
     font-family: Helvetica, Verdana, sans-serif;
-
-    border: 2px solid blue;
 }
 
 
-/*==============================================================>> Main Panel */
+/*==============================================================>> Game Info Panel */
 
-.game-panel {
+.info-panel {
+    position: fixed;
+    top: 30px;
+    left: 5vw;
+    right: 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    border-radius: 50px;
+    background-color: var(--color-whiteSmoke);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.info-panel .info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 200px;
+    font-size: var(--font-size3);
+    font-weight: 500;
+    padding-bottom: 25px;
+}
+
+.info-panel .info span {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--font-size4);
+    font-weight: bold;
+    transform: translateY(20px);
+    
+}
+
+.info-panel .box-button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-width: 200px;
+}
+
+.info-panel .box-button button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    margin: 15px;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--color-blue);
+    font-size: 25px;
+    color: var(--color-whiteSmoke);
+    box-shadow: inset -2px -2px 5px rgba(0, 0, 0, 0.4), 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.info-panel .box-button button.red {
+    background-color: var(--color-red);
+}
+
+
+/*==============================================================>> Main Layer (Game Background) */
+
+.layer-main {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -56,16 +111,16 @@ body {
     justify-content: flex-start;
     align-items: center;
 
-    background-image: url("images/bgGame.png");
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)), url("images/bgGame.png");
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
     background-position: center center;
 }
 
 
-/*==============================================================>> Start Panel */
+/*==============================================================>> Start Game Layer */
 
-.start-panel {
+.layer-start {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -73,21 +128,35 @@ body {
     right: 0;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     gap: 20px;
     font-size: var(--font-size4);
     font-weight: 500;
     text-align: center;
     background-color: var(--color-whiteSmoke);
-    background-image: url("images/bgMain.png");
+    background-image: url("images/bgStart.png");
     background-size: 100vw 100vh;
     background-repeat: no-repeat;
     background-position: center center;
     z-index: 5;
 }
 
-.start-panel .scanner {
+.layer-start button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 30px;
+    border-radius: 200px;
+    border: none;
+    background-color: var(--color-red);
+    color: white;
+    font-weight: bold;
+    font-size: var(--font-size4);
+    box-shadow: inset -2px -2px 5px rgba(0, 0, 0, 0.4), 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.layer-start .scanner {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -107,26 +176,96 @@ body {
     touch-action: none;
     color: white;
     font-size: 15px;
-    
 }
 
-.start-panel button {
+
+/*==============================================================>> Question */
+
+.question {
+    position: fixed;
+    top: 170px;
+    width: 270px;
+    height: 270px;
+    border-radius: 20%;
+    background-color: var(--color-whiteSmoke);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    box-shadow: inset -4px -4px 8px rgba(0, 0, 0, 0.3), 2px 2px 3px rgba(0, 0, 0, 0.5);
+}
+
+
+/*==============================================================>> Scanner */
+
+.container-scanner {
+    position: fixed;
+    bottom: 0;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    margin-bottom: 50px;
+}
+
+.container-scanner .scanner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 220px;
+    height: 220px;
+    border-radius: 20%;
+    box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    color: white;
+    touch-action: none;
+    background-color: var(--color-orange);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.scanner:nth-child(even) {
+    margin-top: 240px;
+}
+
+.scanner .info {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 15px 30px;
-    border-radius: 200px;
-    border: none;
-    background-color: var(--color-red);
-    color: white;
-    font-weight: bold;
-    font-size: var(--font-size4);
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    width: 60%;
+    padding: 3px 5px;
+    border-radius: 30px;
+    margin-top: 15px;
+    font-size: 10px;
+    white-space: nowrap;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.8);
+    transform: translateY(-50px);
+}
+
+.tipMarker {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-color: rgb(208, 84, 84);
+    border-radius: 50%;
+    opacity: 0.7;
+    transform: translate(-50%, -50%);
 }
 
 
-/*==============================================================>> Game Info */
 
+
+
+
+
+
+
+/*==============================================================>> Game Info */
+/*
 .container-info {
     display: flex;
     justify-content: space-between;
@@ -171,80 +310,8 @@ body {
 .container-info .button-group button.red {
     background-color: var(--color-red);
 }
-
-/*==============================================================>> Question */
-
-.question {
-    position: fixed;
-    top: 170px;
-    width: 270px;
-    height: 270px;
-    border-radius: 20%;
-    background-color: var(--color-whiteSmoke);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-}
+*/
 
 
-/*==============================================================>> Scanner */
-
-.container-scanner {
-    position: fixed;
-    bottom: 0;
-    left: 20px;
-    right: 20px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: flex-start;
-    margin-bottom: 50px;
-}
-
-.container-scanner .scanner {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    width: 220px;
-    height: 220px;
-    border-radius: 20%;
-    box-shadow: inset -4px -4px 10px rgba(0, 0, 0, 0.3);
-    color: white;
-    touch-action: none;
-    background-color: var(--color-orange);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-}
-
-.scanner:nth-child(even) {
-    margin-top: 240px;
-}
-
-.scanner .info {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 60%;
-    padding: 3px 5px;
-    border-radius: 30px;
-    margin-top: 15px;
-    font-size: 10px;
-    white-space: nowrap;
-    color: #333;
-    background-color: rgba(255, 255, 255, 0.8);
-    transform: translateY(-50px);
-}
-
-.tipMarker {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    background-color: rgb(208, 84, 84);
-    border-radius: 50%;
-    opacity: 0.7;
-    transform: translate(-50%, -50%);
-}
 
 

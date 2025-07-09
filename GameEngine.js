@@ -1,3 +1,15 @@
+////////////////////////////////////////////=========================
+///////////////////////////////////////////       GAME ENGINE CLASS
+//////////////////////////////////////////===========================
+
+//==== Class Structure ====//
+//                         //
+//     GameEngine          //
+//       |--> Reader       //
+//       |--> Question     //
+//                         //
+//=========================//
+
 
 class GameEngine {
     constructor(geData) {
@@ -56,7 +68,7 @@ class GameEngine {
         let answers = [this.readerA.TagId, this.readerB.TagId, this.readerC.TagId];
         answers = answers.sort(function(a, b){return a - b});
 
-        document.querySelector(".container-info .info").textContent = `${this.question.combCode} | ${answers}`;
+        document.getElementById("text-score").textContent = `${this.question.combCode} | ${answers}`;
 
         if (answers[0] > 0 && answers[1] > 0 && answers[2] > 0 ) {
             if (JSON.stringify(this.question.combCode) === JSON.stringify(answers)) {
