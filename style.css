@@ -51,23 +51,12 @@ body {
 
 .info-panel .info {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    min-width: 200px;
-    font-size: var(--font-size3);
-    font-weight: 500;
-    padding-bottom: 25px;
-}
-
-.info-panel .info span {
-    position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    min-width: 300px;
     font-size: var(--font-size4);
     font-weight: bold;
-    transform: translateY(20px);
-    
+    margin: 0px 40px;
 }
 
 .info-panel .box-button {

@@ -3,22 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calibration</title>
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
 </head>
 <body>
+
     <!-- Game Info Panel -->
     <div class="info-panel">
-        <div class="info"></div>
-        <div class="info"></div>
+        <div class="info">Screen Tag Calibration</div>
         <div class="box-button">
+            <button onclick="fullscreen()"><i class="fa-solid fa-expand"></i></button>
             <button class="red"><i class="fa-solid fa-xmark"></i></button>
         </div>
     </div>
 
     <!-- Game Layer (Game Background) -->
     <div class="layer-main"></div>
+
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="calibration.js"></script>
+
 </body>
 </html>

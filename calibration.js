@@ -1,59 +1,4 @@
-////////////////////////////////////////////=========================
-///////////////////////////////////////////     GAME INITIALIZATION
-//////////////////////////////////////////===========================
 
-// Create Game Engine
-const game = new GameEngine({
-    numOfQuestions: 10,
-    patternPaths: [
-        "images/patterns/patA1.png",
-        "images/patterns/patA2.png",
-        "images/patterns/patA3.png",
-        "images/patterns/patA4.png",
-        "images/patterns/patA5.png",
-        "images/patterns/patA6.png",
-        "images/patterns/patA7.png",
-        "images/patterns/patA8.png",
-        "images/patterns/patA9.png",
-        "images/patterns/patA10.png",
-        "images/patterns/patA11.png",
-        "images/patterns/patA12.png"
-    ]
-});
-
-//Start Game Panel
-const layerStart = document.querySelector(".layer-start");
-
-
-
-////////////////////////////////////////////=========================
-///////////////////////////////////////////          MAIN FUNCTIONS
-//////////////////////////////////////////===========================
-
-function startGame() {
-    // Hide Start Panel
-    layerStart.style.display = "none";
-
-    // Start Game (Game Loop)
-    setTimeout(() => {
-        game.gameLoop();
-    }, 1000);
-}
-
-
-
-
-/*
-
-
-document.addEventListener("DOMContentLoaded", function() {
-
-    // Calibration System
-    //gameStartScanner(game);
-});
-
-
-//========================================================>> Start Game Panel + Calibration
 function gameStartScanner(gameEngine) {
     const ePanel = document.querySelector(".layer-start");
     const eScanner = document.querySelector(".layer-start .scanner");
@@ -105,5 +50,3 @@ function gameStartScanner(gameEngine) {
         }
     });
 }
-
-*/
