@@ -15,24 +15,24 @@ class GameEngine {
     constructor(geData) {
         this.readerA = new Reader({
             markerMode: false,
-            infoMode: false,
+            infoMode: true,
             patternPaths: geData.patternPaths,
         });
 
         this.readerB = new Reader({
             markerMode: false,
-            infoMode: false,
+            infoMode: true,
             patternPaths: geData.patternPaths,
         });
 
         this.readerC = new Reader({
             markerMode: false,
-            infoMode: false,
+            infoMode: true,
             patternPaths: geData.patternPaths,
         });
 
         this.question = new Question({
-            numOfQuestion: geData.numOfQuestion,
+            numOfQuestions: geData.numOfQuestions,
             patternPaths: geData.patternPaths,
         });
 

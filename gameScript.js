@@ -4,7 +4,7 @@
 
 // Create Game Engine
 const game = new GameEngine({
-    numOfQuestion: 10,
+    numOfQuestions: 10,
     patternPaths: [
         "images/patterns/patA1.png",
         "images/patterns/patA2.png",

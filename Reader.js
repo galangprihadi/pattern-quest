@@ -13,31 +13,28 @@
 
 class Reader {
     constructor(rData) {
-        // init
-        this.markerMode = rData.markerMode || false;
-        this.infoMode = rData.infoMode || false;
+        // Configuration
+        this.toleranceRange = 4;    // Tolerance value for reading process (in pixel)
+        this.numOfTagIds = 12;      // Number of tag ids used in game
+
+        // Variables
+        this.TagId = 0;
+        this.pixelValue = 0;
+        this.markers = {};
+
+        // Init
+        this.markerMode = rData.markerMode || false;    // To display a mark at each touch point (development process)
+        this.infoMode = rData.infoMode || false;        // To display screen tag reading information (development process)
 
         this.pattPaths = rData.patternPaths;
         this.setImages();
 
-        this.tagRef = rData.tagRef || 80,   // Tag reference (shortest tag) in pixel value  |  the shortest tag is 18 mm
-        this.acceptedRange = 5,             // Acceptance Value for reading process (in unit value)
-
-        // Tag ID              1     2     3     4     5     6     7     8     9     10    11    12
-        // Tip Distance        18mm  20mm  22mm  24mm  26mm  28mm  30mm  32mm  34mm  36mm  38mm  40mm
-        this.unitDistances  = [100,  112,  123,  135,  147,  158,  170,  181,  192,  205,  216,  228];
-
-        this.markers = {};
-
-        // Variables
-        this.TagId = 0;
-        this.unitValue = 0;
-        this.pixelValue = 0;
+        this.minDistance = 80;                          // Shortest tip distance of Screen Tag (in pixel)
+        this.maxDistance = 182;                         // Longest tip distance of Screen Tag (in pixel)
+        this.distanceRef = this.setDistanceRef(12);     // Calculate each tip distance (12 tip distances)
         
-        // container
+        // Generating the scanner
         this.eContainer = document.querySelector(".container-scanner");
-
-        // scanner
         this.eScanner = document.createElement("div");
         this.eScanner.classList.add("scanner");
 
@@ -59,7 +56,7 @@ class Reader {
 
         this.eContainer.append(this.eScanner);
 
-        // information box
+        // Generating the information box (info mode)
         if (this.infoMode) {
             this.eInfo = document.createElement("div");
             this.eInfo.classList.add("info");
@@ -70,10 +67,21 @@ class Reader {
 
     resetTag() {
         this.TagId = 0;
-        this.unitValue = 0;
         this.pixelValue = 0;
+        this.markers = {};
 
         this.eScanner.removeAttribute("style");
+    }
+
+    setDistanceRef(numOfTags) {
+        let distances = [this.minDistance];
+        const gap = (this.maxDistance - this.minDistance) / (numOfTags - 1);
+
+        for (let i=1; i < numOfTags; i++) {
+            distances.push(distances[i-1] + gap);
+        }
+
+        return distances;
     }
 
     readTag(event) {
@@ -120,7 +128,6 @@ class Reader {
         }
 
         this.pixelValue = this.getPixelValue(touchPos);
-        this.unitValue = this.getUnitValue(touchPos);
         this.TagId = this.getTagId(touchPos);
 
         if (this.TagId > 0) {
@@ -129,8 +136,8 @@ class Reader {
         }
 
         if (touches.length > 0) {
-            //if (this.infoMode) this.eInfo.textContent = `${touches.length} tc | ${this.pixelValue} px | ${this.unitValue} un`;
-            if (this.infoMode) this.eInfo.textContent = `Tag ID ${this.TagId}`;
+            if (this.infoMode) this.eInfo.textContent = `${touches.length} tc | ${this.pixelValue} px`;
+            //if (this.infoMode) this.eInfo.textContent = `Tag ID ${this.TagId}`;
         }
         else {
             if (this.infoMode) this.eInfo.textContent = "No Touch";
@@ -157,20 +164,11 @@ class Reader {
         return maxDistance;
     }
 
-    getUnitValue(touchPos) {
-        if (touchPos.length >= 2) {
-            return Math.round(this.getPixelValue(touchPos) / this.tagRef * 100);    // Convert pixel value to unit value
-        }
-        else {
-            return 0;
-        }
-    }
-
     getTagId(touchPos) {
         let tipId = 0;
 
-        for (let i=0; i < this.unitDistances.length; i++) {
-            if (this.unitValue > this.unitDistances[i] - this.acceptedRange && this.unitValue < this.unitDistances[i] + this.acceptedRange) {
+        for (let i=0; i < this.distanceRef.length; i++) {
+            if (this.pixelValue > this.distanceRef[i] - this.toleranceRange && this.pixelValue < this.distanceRef[i] + this.toleranceRange) {
                 tipId = i + 1;
             }
         }
@@ -195,6 +193,16 @@ class Reader {
         return this.TagId;
     }
 
+    async setImages() {
+        try {
+            const images = await this.loadAllImages(this.pattPaths);
+            this.pattImages = images;
+        } 
+        catch (error) {
+            console.log("setImages() error : ");
+        }
+    }
+
     loadAllImages(paths) {
         const loadPromises = [];
         const loadedImages = {};
@@ -217,17 +225,5 @@ class Reader {
         });
 
         return Promise.all(loadPromises).then(() => loadedImages);
-    }
-
-    async setImages() {
-        try {
-            const images = await this.loadAllImages(this.pattPaths);
-            this.pattImages = images;
-            //this.setQuestion();
-            this.eScanner.style.backgroundImage = `url(${this.pattImages[1]})`
-        } 
-        catch (error) {
-            console.log("setImages() error : ");
-        }
     }
 }

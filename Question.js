@@ -24,7 +24,7 @@ class Question {
     ];
 
     constructor(qData) {
-        this.numOfQuestion = qData.numOfQuestion;
+        this.numOfQuestions = qData.numOfQuestions;
         this.pattPaths = qData.patternPaths;
 
         this.currentQuestion = 0;
@@ -93,7 +93,7 @@ class Question {
     }
 
     nextQuestion(isCorrect) {
-        if (this.currentQuestion < this.numOfQuestion - 1) {
+        if (this.currentQuestion < this.numOfQuestions - 1) {
             if (isCorrect) {
                 this.eQuestion.style.backgroundColor = "var(--color-correct)";
             }
