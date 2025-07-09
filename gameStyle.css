@@ -1,37 +1,4 @@
 
-:root {
-    --color-background: #9DE8F9;
-
-    --color-red: #FF6347;
-    --color-green: #29B95C;
-    --color-blue: #4169E1;
-    --color-whiteSmoke: #f0f0f0;
-    --color-yellow: #ffc32b;
-    --color-orange: #ff872b;
-    --color-correct: #29B95C;
-    --color-incorrect: #FF6347;
-
-    --font-size2: 10px;
-    --font-size3: 15px;
-    --font-size4: 20px;
-    --font-size5: 30px;
-    --font-size6: 40px;
-}
-
-html {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    font-family: Helvetica, Verdana, sans-serif;
-}
-
 
 /*==============================================================>> Game Info Panel */
 

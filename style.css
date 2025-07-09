@@ -1,0 +1,117 @@
+:root {
+    --color-background: #9DE8F9;
+
+    --color-red: #FF6347;
+    --color-green: #29B95C;
+    --color-blue: #4169E1;
+    --color-whiteSmoke: #f0f0f0;
+    --color-yellow: #ffc32b;
+    --color-orange: #ff872b;
+    --color-correct: #29B95C;
+    --color-incorrect: #FF6347;
+
+    --font-size2: 10px;
+    --font-size3: 15px;
+    --font-size4: 20px;
+    --font-size5: 30px;
+    --font-size6: 40px;
+}
+
+html {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    font-family: Helvetica, Verdana, sans-serif;
+}
+
+
+/*==============================================================>> Game Info Panel */
+
+.info-panel {
+    position: fixed;
+    top: 30px;
+    left: 5vw;
+    right: 5vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    border-radius: 50px;
+    background-color: var(--color-whiteSmoke);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.info-panel .info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 200px;
+    font-size: var(--font-size3);
+    font-weight: 500;
+    padding-bottom: 25px;
+}
+
+.info-panel .info span {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--font-size4);
+    font-weight: bold;
+    transform: translateY(20px);
+    
+}
+
+.info-panel .box-button {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    min-width: 200px;
+}
+
+.info-panel .box-button button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    margin: 15px;
+    border: none;
+    border-radius: 50%;
+    background-color: var(--color-blue);
+    font-size: 25px;
+    color: var(--color-whiteSmoke);
+    box-shadow: inset -2px -2px 5px rgba(0, 0, 0, 0.4), 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.info-panel .box-button button.red {
+    background-color: var(--color-red);
+}
+
+
+/*==============================================================>> Main Layer (Game Background) */
+
+.layer-main {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)), url("images/bgGame.png");
+    background-size: 100vw 100vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
