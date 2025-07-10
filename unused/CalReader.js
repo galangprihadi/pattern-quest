@@ -1,36 +1,25 @@
-////////////////////////////////////////////=========================
-///////////////////////////////////////////            READER CLASS
-//////////////////////////////////////////===========================
+////////////////////////////////////////////===============================
+///////////////////////////////////////////      CALIBRATION READER CLASS
+//////////////////////////////////////////=================================
 
-//==== Class Structure ====//
-//                         //
-//     GameEngine          //
-//       |--> Reader       //
-//       |--> Question     //
-//                         //
-//=========================//
-
-
-class Reader {
+class CalReader {
 
     constructor(rData) {
         // Configuration
-        this.toleranceRange = 4;    // Tolerance value for reading process (in pixel)
-        this.numOfTagIds = 12;      // Number of tag ids used in game
+        //this.toleranceRange = 4;    // Tolerance value for reading process (in pixel)
+        //this.numOfTagIds = 12;      // Number of tag ids used in game
 
         // Variables
-        this.TagId = 0;
+        //this.TagId = 0;
         this.pixelValue = 0;
         this.markers = {};
 
         // Init
-        this.markerMode = rData.markerMode || false;                // To display a mark at each touch point (development process)
-        this.infoMode = rData.infoMode || false;                    // To display screen tag reading information (development process)
+        this.markerMode = true;    // To display a mark at each touch point (development process)
+        this.infoMode = true;        // To display screen tag reading information (development process)
 
-        this.calibrationMode = rData.calibrationMode || false;      // For calibration process only
-
-        this.pattPaths = rData.patternPaths;
-        this.setImages();
+        //this.pattPaths = rData.patternPaths;
+        //this.setImages();
 
         this.minDistance = 80;                          // Shortest tip distance of Screen Tag (in pixel)
         this.maxDistance = 182;                         // Longest tip distance of Screen Tag (in pixel)
@@ -133,7 +122,7 @@ class Reader {
         this.pixelValue = this.getPixelValue(touchPos);
         this.TagId = this.getTagId(touchPos);
 
-        if (this.TagId > 0  && !this.calibrationMode) {
+        if (this.TagId > 0) {
             this.eScanner.style.backgroundColor = "var(--color-whiteSmoke)";
             this.eScanner.style.backgroundImage = `url("${this.pattImages[this.TagId].src}")`;
         }
@@ -200,11 +189,6 @@ class Reader {
         try {
             const images = await this.loadAllImages(this.pattPaths);
             this.pattImages = images;
-
-            if (this.calibrationMode) {
-                this.eScanner.style.backgroundColor = "var(--color-whiteSmoke)";
-                this.eScanner.style.backgroundImage = `url("${this.pattImages[1].src}")`;
-            }
         } 
         catch (error) {
             console.log("setImages() error : ");

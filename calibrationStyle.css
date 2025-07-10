@@ -1,0 +1,87 @@
+/*==============================================================>> Counter */
+
+.layer-main {
+    padding: 0px 100px;
+    padding-top: 200px;
+    text-align: center;
+    font-size: var(--font-size5);
+    font-weight: 500;
+}
+
+.layer-main .horizontal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;
+}
+
+.layer-main .horizontal span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 200px;
+
+    border: 1px solid red;
+}
+
+/*==============================================================>> Scanner */
+
+.container-scanner {
+    position: fixed;
+    bottom: 0;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    margin-bottom: 200px;
+}
+
+.container-scanner .scanner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    width: 220px;
+    height: 220px;
+    border-radius: 20%;
+    box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    color: white;
+    touch-action: none;
+    background-color: var(--color-orange);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.scanner .info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    padding: 3px 5px;
+    border-radius: 30px;
+    margin-top: 15px;
+    font-size: 10px;
+    white-space: nowrap;
+    color: #333;
+    background-color: rgba(255, 255, 255, 0.8);
+    transform: translateY(-50px);
+}
+
+.tipMarker {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background-color: rgb(208, 84, 84);
+    border-radius: 50%;
+    opacity: 0.7;
+    transform: translate(-50%, -50%);
+}
+
+
+/*==============================================================>> Scanner */
+

@@ -12,6 +12,7 @@
 
 
 class GameEngine {
+    
     constructor(geData) {
         this.readerA = new Reader({
             markerMode: false,
