@@ -32,8 +32,9 @@ class Reader {
         this.pattPaths = rData.patternPaths;
         this.setImages();
 
-        this.minDistance = 80;                          // Shortest tip distance of Screen Tag (in pixel)
-        this.maxDistance = 182;                         // Longest tip distance of Screen Tag (in pixel)
+        this.minDistance = parseFloat(localStorage.getItem("minDistance")) || 80;   // Shortest tip distance of Screen Tag (in pixel)
+        this.maxDistance = parseFloat(localStorage.getItem("maxDistance")) || 182;  // Longest tip distance of Screen Tag (in pixel)
+
         this.distanceRef = this.setDistanceRef(12);     // Calculate each tip distance (12 tip distances)
         
         // Generating the scanner

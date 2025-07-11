@@ -2,7 +2,6 @@
 ///////////////////////////////////////////     GAME INITIALIZATION
 //////////////////////////////////////////===========================
 
-// Create Game Engine
 const game = new GameEngine({
     numOfQuestions: 10,
     patternPaths: [
@@ -25,20 +24,39 @@ const game = new GameEngine({
 const layerStart = document.querySelector(".layer-start");
 
 
-
 ////////////////////////////////////////////=========================
 ///////////////////////////////////////////          MAIN FUNCTIONS
 //////////////////////////////////////////===========================
 
-function startGame() {
-    // Hide Start Panel
-    layerStart.style.display = "none";
+document.addEventListener('DOMContentLoaded', () => {
 
-    // Start Game (Game Loop)
-    setTimeout(() => {
-        game.gameLoop();
-    }, 1000);
-}
+    if (localStorage.getItem("minDistance") == null && localStorage.getItem("minDistance") == null) {
+        const warningText = document.createElement("span");
+        warningText.textContent = "You need to calibrate the Screen Tag first!";
+        layerStart.prepend(warningText);
+
+        btnStart.textContent = "CALIBRATE";
+    }
+});
+
+// Button Start Game
+const btnStart = document.getElementById("btnStart");
+btnStart.addEventListener("click", ()=>{
+    if (localStorage.getItem("minDistance") !== null && localStorage.getItem("minDistance") !== null) {
+
+        // Hide Start Panel
+        layerStart.style.display = "none";
+
+        // Start Game (Game Loop)
+        setTimeout(() => {
+            game.gameLoop();
+        }, 1000);
+    }
+    else {
+        window.location.href = "calibration.html";
+    }
+});
+
 
 
 

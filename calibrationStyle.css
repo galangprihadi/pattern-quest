@@ -8,22 +8,6 @@
     font-weight: 500;
 }
 
-.layer-main .horizontal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 150px;
-}
-
-.layer-main .horizontal span {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width: 200px;
-
-    border: 1px solid red;
-}
 
 /*==============================================================>> Scanner */
 
@@ -35,7 +19,7 @@
     display: flex;
     justify-content: space-evenly;
     align-items: flex-start;
-    margin-bottom: 200px;
+    margin-bottom: 150px;
 }
 
 .container-scanner .scanner {
@@ -83,5 +67,35 @@
 }
 
 
-/*==============================================================>> Scanner */
+/*==============================================================>> Counter */
 
+.container-counter {
+    position: fixed;
+    bottom: 0;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    margin-bottom: 450px;
+}
+
+.container-counter .counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 220px;
+    text-align: center;
+    font-size: var(--font-size4);
+    font-weight: 500;
+}
+
+.container-counter .counter span {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--font-size6);
+    font-weight: bold;
+    transform: translateY(-35px);
+}

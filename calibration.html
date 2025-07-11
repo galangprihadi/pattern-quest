@@ -15,23 +15,23 @@
     <div class="info-panel">
         <div class="info">Screen Tag Calibration</div>
         <div class="box-button">
-            <button onclick="fullscreen()"><i class="fa-solid fa-expand"></i></button>
-            <button class="red"><i class="fa-solid fa-xmark"></i></button>
+            <button id="btnFullscreen"><i class="fa-solid fa-expand"></i></button>
+            <button id="btnHome" class="red"><i class="fa-solid fa-xmark"></i></button>
         </div>
     </div>
 
     <!-- Game Layer (Game Background) -->
     <div class="layer-main">
-        Place the two key screen tags in the correct locations, then press each one 5 times to calibrate!
-        <div class="horizontal">
-            <span>Testing 1</span>
-            <span>Testing 2</span>
-        </div>
+        Place Screen Tags A and B in the correct locations, then press each one 5 times to calibrate!
     </div>
 
     <!-- Scanner -->
-    <div class="container-scanner">
-        
+    <div class="container-scanner"></div>
+
+    <!-- Counter -->
+    <div class="container-counter">
+        <div class="counter" id="counterA"><span></span>place and press</div>
+        <div class="counter" id="counterB"><span></span>place and press</div>
     </div>
 
 
