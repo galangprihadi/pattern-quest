@@ -28,7 +28,7 @@ class Question {
         this.numOfQuestions = qData.numOfQuestions;
         this.pattPaths = qData.patternPaths;
 
-        this.currentQuestion = 0;
+        this.currentQuestion = 1;
         this.eQuestion = document.getElementById("question");
         this.pattImages = {};
 
@@ -94,7 +94,29 @@ class Question {
     }
 
     nextQuestion(isCorrect) {
-        if (this.currentQuestion < this.numOfQuestions - 1) {
+        if (isCorrect) {
+            this.eQuestion.style.backgroundColor = "var(--color-correct)";
+        }
+        else {
+            this.eQuestion.style.backgroundColor = "var(--color-incorrect)";
+        }
+
+        this.currentQuestion += 1;
+        
+        if (this.currentQuestion <= this.numOfQuestions) {
+            setTimeout(() => {
+                this.eQuestion.removeAttribute("style");
+                this.setQuestion();
+            }, 1000);
+            
+            return true;
+        }
+        else {
+            return false;
+        }
+
+        /*
+        if (this.currentQuestion < this.numOfQuestions) {
             if (isCorrect) {
                 this.eQuestion.style.backgroundColor = "var(--color-correct)";
             }
@@ -108,12 +130,12 @@ class Question {
                 this.setQuestion();
             }, 1000);
 
-            
-            
             return true;
         }
         else {
             return false;
         }
+
+        */
     }
 }

@@ -13,8 +13,12 @@
 
     <!-- Game Info Panel -->
     <div class="info-panel">
-        <div class="info">Team Score<span id="text-score">100</span></div>
-        <div class="info">Time<span id="text-time">01:10</span></div>
+        <div class="info">Team Score<span id="text-score">0</span></div>
+        <div class="info">Time<span id="text-time">0</span></div>
+
+        <!--div class="info">Team Score<span id="text-score">100</span></div>
+        <div class="info">Time<span id="text-time">01:10</span></div-->
+
         <div class="box-button">
             <button id="btnFullscreen"><i class="fa-solid fa-expand"></i></button>
             <button id="btnHome" class="red"><i class="fa-solid fa-xmark"></i></button>
@@ -27,6 +31,19 @@
     <!-- Start Game Layer -->
     <div class="layer-start">
         <button id="btnStart">START GAME</button>
+    </div>
+
+    <!-- Game Over Layer -->
+    <div class="layer-gameover">
+        GAME OVER
+        <div class="team">team Score<span>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+        </span></div>
+        <button id="btnRestart">PLAY AGAIN</button>
     </div>
 
     <!-- Question -->
