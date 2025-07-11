@@ -14,10 +14,7 @@
     <!-- Game Info Panel -->
     <div class="info-panel">
         <div class="info">Team Score<span id="text-score">0</span></div>
-        <div class="info">Time<span id="text-time">0</span></div>
-
-        <!--div class="info">Team Score<span id="text-score">100</span></div>
-        <div class="info">Time<span id="text-time">01:10</span></div-->
+        <div class="info">Timer<span id="text-time">0</span></div>
 
         <div class="box-button">
             <button id="btnFullscreen"><i class="fa-solid fa-expand"></i></button>
@@ -36,14 +33,37 @@
     <!-- Game Over Layer -->
     <div class="layer-gameover">
         GAME OVER
-        <div class="team">team Score<span>
+        <div class="score">Team Score<span id="score-team">
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
         </span></div>
-        <button id="btnRestart">PLAY AGAIN</button>
+        <div class="score">
+            <div class="player">Player A<span id="score-a">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+            </span></div>
+            <div class="player">Player B<span id="score-b">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+            </span></div>
+            <div class="player">Player C<span id="score-c">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+            </span></div>
+        </div>
+        <button id="btnPlayAgain">PLAY AGAIN</button>
     </div>
 
     <!-- Question -->

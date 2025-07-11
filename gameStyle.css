@@ -74,8 +74,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding-bottom: 100px;
     gap: 20px;
-    font-size: var(--font-size5);
+    font-size: 50px;
     font-weight: bold;
     text-align: center;
     background-color: var(--color-whiteSmoke);
@@ -86,24 +87,50 @@
     z-index: 7;
 }
 
-.layer-gameover .team {
+.layer-gameover .score {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    width: 90%;
+    height: 110px;
     font-size: var(--font-size4);
     font-weight: 500;
-
-    border: 1px solid red;
+    margin-top: 30px;
 }
 
-.layer-gameover .team span {
+.layer-gameover .score span {
     position: absolute;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-left: 16px;
     font-size: 60px;
     font-weight: bold;
     letter-spacing: 20px;
+    color: var(--color-orange);
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+    transform: translateY(40px);
+}
+
+.layer-gameover .score .player {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 350px;
+    height: 100px;
+}
+
+.layer-gameover .score .player span {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 0px;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 0;
+    color: var(--color-orange);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     transform: translateY(40px);
 }
 
@@ -111,7 +138,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 50px;
     padding: 15px 30px;
     border-radius: 200px;
     border: none;

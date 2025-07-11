@@ -28,10 +28,14 @@ class Question {
         this.numOfQuestions = qData.numOfQuestions;
         this.pattPaths = qData.patternPaths;
 
-        this.currentQuestion = 1;
         this.eQuestion = document.getElementById("question");
-        this.pattImages = {};
 
+        this.reload();
+    }
+
+    reload() {
+        this.currentQuestion = 1;
+        this.pattImages = {};
         this.initializePatterns();
     }
 
@@ -112,30 +116,11 @@ class Question {
             return true;
         }
         else {
-            return false;
-        }
-
-        /*
-        if (this.currentQuestion < this.numOfQuestions) {
-            if (isCorrect) {
-                this.eQuestion.style.backgroundColor = "var(--color-correct)";
-            }
-            else {
-                this.eQuestion.style.backgroundColor = "var(--color-incorrect)";
-            }
-            
             setTimeout(() => {
-                this.currentQuestion += 1;
                 this.eQuestion.removeAttribute("style");
-                this.setQuestion();
             }, 1000);
 
-            return true;
-        }
-        else {
             return false;
         }
-
-        */
     }
 }

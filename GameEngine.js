@@ -37,32 +37,23 @@ class GameEngine {
             patternPaths: geData.patternPaths,
         });
 
-        this.textScore = document.getElementById("text-score");
-        this.textTime = document.getElementById("text-time");
+        this.eGameOverPanel = document.querySelector(".layer-gameover");
+        this.eTextScore = document.getElementById("text-score");
+        this.eTextTime = document.getElementById("text-time");
+        this.eScoreTeam = document.getElementById("score-team");
+        this.eScoreA = document.getElementById("score-a");
+        this.eScoreB = document.getElementById("score-b");
+        this.eScoreC = document.getElementById("score-c");
 
         this.gameRunning = true;
-
-
-
-        //this.gameLoop();
-
-        /*
-        setTimeout(() => {
-            //this.question.setQuestion();
-        }, 1000);
-
-        this.gameRunning = true;
-
-        //this.gameLoop();
-        */
     }
 
     gameLoop() {
         let playerAnswers = [this.readerA.TagId, this.readerB.TagId, this.readerC.TagId];
         playerAnswers = playerAnswers.sort(function(a, b){return a - b});
 
-        this.textScore.textContent = `${this.question.combCode} | ${playerAnswers}`;
-        this.textTime.textContent = this.question.currentQuestion;
+        this.eTextScore.textContent = `${this.question.combCode} | ${playerAnswers}`;
+        this.eTextTime.textContent = this.question.currentQuestion;
 
         if (playerAnswers[0] > 0 && playerAnswers[1] > 0 && playerAnswers[2] > 0 ) {
             if (JSON.stringify(this.question.combCode) === JSON.stringify(playerAnswers)) {
@@ -77,65 +68,13 @@ class GameEngine {
             this.readerC.resetTag();
         }
 
-        //this.checkAnswer();
-
         if (this.gameRunning) {
             requestAnimationFrame(()=>{
                 this.gameLoop();
             });
         }
         else {
-            this.textScore.textContent = "Game Over";
+            this.eGameOverPanel.style.display = "flex";
         }
-
-        /*
-        const step = () => {
-
-            this.checkAnswer();
-
-            requestAnimationFrame(()=>{
-                step();
-            });
-        }
-
-        step();
-        */
-    }
-
-    /*
-    calibrateTag(refValue){
-        this.readerA.tagRef = refValue;
-        this.readerB.tagRef = refValue;
-        this.readerC.tagRef = refValue;
-    }
-    */
-
-    checkAnswer() {
-        let answers = [this.readerA.TagId, this.readerB.TagId, this.readerC.TagId];
-        answers = answers.sort(function(a, b){return a - b});
-
-        document.getElementById("text-score").textContent = `${this.question.combCode} | ${answers}`;
-
-        if (answers[0] > 0 && answers[1] > 0 && answers[2] > 0 ) {
-            if (JSON.stringify(this.question.combCode) === JSON.stringify(answers)) {
-                this.question.nextQuestion(true);
-                
-            }
-            else {
-                this.question.nextQuestion(false);
-            }
-
-            this.readerA.resetTag();
-            this.readerB.resetTag();
-            this.readerC.resetTag();
-        }
-        
-    }
-
-    getAnswer() {
-        let answers = [this.readerA.TagId, this.readerB.TagId, this.readerC.TagId];
-        answers = answers.sort(function(a, b){return a - b});
-
-        return answers.join("");
     }
 }
