@@ -5,12 +5,14 @@
 
 const cal = {
     readerA: new Reader({
+        scoreMode: false,
         markerMode: true,
         infoMode: true,
         calibrationMode: true,
         patternPaths: ["images/patterns/patA1.png"]
     }),
     readerB: new Reader({
+        scoreMode: false,
         markerMode: true,
         infoMode: true,
         calibrationMode: true,

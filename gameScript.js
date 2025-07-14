@@ -4,6 +4,7 @@
 
 const game = new GameEngine({
     numOfQuestions: 3,
+    duration: 63,
     patternPaths: [
         "images/patterns/patA1.png",
         "images/patterns/patA2.png",
@@ -48,10 +49,9 @@ btnStart.addEventListener("click", () => {
         // Hide Start Panel
         layerStart.style.display = "none";
 
-        // Start Game (Game Loop)
-        setTimeout(() => {
-            game.gameLoop();
-        }, 1000);
+        //Start Game
+        game.startGame();
+
     }
     else {
         window.location.href = "calibration.html";

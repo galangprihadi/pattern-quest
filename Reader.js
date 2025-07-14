@@ -5,8 +5,9 @@
 //==== Class Structure ====//
 //                         //
 //     GameEngine          //
-//       |--> Reader       //
 //       |--> Question     //
+//       |--> Reader       //
+//       |--> Score        //
 //                         //
 //=========================//
 
@@ -15,15 +16,16 @@ class Reader {
 
     constructor(rData) {
         // Configuration
-        
         this.numOfTagIds = 12;      // Number of tag ids used in game
 
         // Variables
         this.TagId = 0;
         this.pixelValue = 0;
+        this.score = 0;
         this.markers = {};
 
         // Init
+        this.scoreMode = rData.scoreMode || false;
         this.markerMode = rData.markerMode || false;                // To display a mark at each touch point (development process)
         this.infoMode = rData.infoMode || false;                    // To display screen tag reading information (development process)
 
@@ -62,6 +64,14 @@ class Reader {
 
         this.eContainer.append(this.eScanner);
 
+        // Generating the score box
+        if (this.scoreMode) {
+            this.eScore = document.createElement("div");
+            this.eScore.classList.add("score");
+            this.eScore.textContent = "0";
+            this.eScanner.append(this.eScore);
+        }
+
         // Generating the information box (info mode)
         if (this.infoMode) {
             this.eInfo = document.createElement("div");
@@ -71,7 +81,7 @@ class Reader {
         }
     }
 
-    resetTag() {
+    resetLevel() {
         this.TagId = 0;
         this.pixelValue = 0;
         this.markers = {};
@@ -139,7 +149,6 @@ class Reader {
                 }
             });
         }
-
 
         this.pixelValue = this.getPixelValue(touchPos);
         this.TagId = this.getTagId(touchPos);
@@ -244,5 +253,10 @@ class Reader {
         });
 
         return Promise.all(loadPromises).then(() => loadedImages);
+    }
+
+    updateScore(nScore) {
+        this.score += nScore;
+        this.eScore.textContent = this.score;
     }
 }

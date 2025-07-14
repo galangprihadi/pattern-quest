@@ -5,8 +5,9 @@
 //==== Class Structure ====//
 //                         //
 //     GameEngine          //
-//       |--> Reader       //
 //       |--> Question     //
+//       |--> Reader       //
+//       |--> Score        //
 //                         //
 //=========================//
 
@@ -14,27 +15,38 @@
 class GameEngine {
     
     constructor(geData) {
+
+        // Question
+        this.question = new Question({
+            numOfQuestions: geData.numOfQuestions,
+            patternPaths: geData.patternPaths,
+        });
+
+        // Reader
         this.readerA = new Reader({
+            scoreMode: true,
             markerMode: false,
-            infoMode: true,
+            infoMode: false,
             patternPaths: geData.patternPaths,
         });
 
         this.readerB = new Reader({
+            scoreMode: true,
             markerMode: false,
-            infoMode: true,
+            infoMode: false,
             patternPaths: geData.patternPaths,
         });
 
         this.readerC = new Reader({
+            scoreMode: true,
             markerMode: false,
-            infoMode: true,
+            infoMode: false,
             patternPaths: geData.patternPaths,
         });
 
-        this.question = new Question({
-            numOfQuestions: geData.numOfQuestions,
-            patternPaths: geData.patternPaths,
+        // Timer
+        this.timer = new Timer({
+            duration: geData.duration,
         });
 
         this.eGameOverPanel = document.querySelector(".layer-gameover");
@@ -45,36 +57,92 @@ class GameEngine {
         this.eScoreB = document.getElementById("score-b");
         this.eScoreC = document.getElementById("score-c");
 
-        this.gameRunning = true;
+        this.penalty = geData.duration;
+    }
+
+    startGame() {
+        this.teamScore = 0;
+        this.readerA.score = 0;
+        this.readerB.score = 0;
+        this.readerC.score = 0;
+
+        this.resetLevel();
+
+        setTimeout(() => {
+            this.gameRunning = true;
+            this.gameLoop();
+        }, 1000);
+    }
+
+    resetLevel() {
+        
+
+        this.curAnswer = [0, 0, 0];
+        this.tempScore = [0, 0, 0];
+        
+        this.readerA.resetLevel();
+        this.readerB.resetLevel();
+        this.readerC.resetLevel();
+
+        this.timer.startTimer();
     }
 
     gameLoop() {
-        let playerAnswers = [this.readerA.TagId, this.readerB.TagId, this.readerC.TagId];
-        playerAnswers = playerAnswers.sort(function(a, b){return a - b});
 
-        this.eTextScore.textContent = `${this.question.combCode} | ${playerAnswers}`;
-        this.eTextTime.textContent = this.question.currentQuestion;
-
-        if (playerAnswers[0] > 0 && playerAnswers[1] > 0 && playerAnswers[2] > 0 ) {
-            if (JSON.stringify(this.question.combCode) === JSON.stringify(playerAnswers)) {
-                this.gameRunning = this.question.nextQuestion(true);
-            }
-            else {
-                this.gameRunning = this.question.nextQuestion(false);
+        if (this.gameRunning) {
+            // Player A
+            if (this.curAnswer[0] != this.readerA.TagId) {
+                this.curAnswer[0] = this.readerA.TagId;
+                this.tempScore[0] = this.timer.getScore();
             }
 
-            this.readerA.resetTag();
-            this.readerB.resetTag();
-            this.readerC.resetTag();
+            // Player B
+            if (this.curAnswer[1] != this.readerB.TagId) {
+                this.curAnswer[1] = this.readerB.TagId;
+                this.tempScore[1] = this.timer.getScore();
+            }
+
+            // Player C
+            if (this.curAnswer[2] != this.readerC.TagId) {
+                this.curAnswer[2] = this.readerC.TagId;
+                this.tempScore[2] = this.timer.getScore();
+            }
+
+            // Check answers
+            let playerAnswers = [this.readerA.TagId, this.readerB.TagId, this.readerC.TagId];
+            playerAnswers = playerAnswers.sort(function(a, b){return a - b});
+
+            if (playerAnswers[0] > 0 && playerAnswers[1] > 0 && playerAnswers[2] > 0 ) {
+                if (JSON.stringify(this.question.combCode) === JSON.stringify(playerAnswers)) {
+                    this.teamScore += this.timer.getScore();
+                    this.readerA.updateScore(this.tempScore[0]);
+                    this.readerB.updateScore(this.tempScore[1]);
+                    this.readerC.updateScore(this.tempScore[2]);
+                    this.gameRunning = this.question.nextQuestion(true);
+                }
+                else {
+                    this.gameRunning = this.question.nextQuestion(false);
+                }
+
+                this.resetLevel();
+            }
         }
 
+        // Information panel updates
+        this.eTextScore.textContent = this.teamScore;
+        this.eTextTime.textContent = this.timer.timerText;
+
+        // Loop Check
         if (this.gameRunning) {
             requestAnimationFrame(()=>{
                 this.gameLoop();
             });
         }
         else {
-            this.eGameOverPanel.style.display = "flex";
+            setTimeout(() => {
+                this.eGameOverPanel.style.display = "flex";
+            }, 1000);
+            
         }
     }
 }

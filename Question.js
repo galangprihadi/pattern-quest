@@ -5,8 +5,9 @@
 //==== Class Structure ====//
 //                         //
 //     GameEngine          //
-//       |--> Reader       //
 //       |--> Question     //
+//       |--> Reader       //
+//       |--> Score        //
 //                         //
 //=========================//
 

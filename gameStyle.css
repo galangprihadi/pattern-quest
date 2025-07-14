@@ -202,18 +202,36 @@
 }
 
 .scanner .info {
+    position: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 60%;
+    width: 20vw;
     padding: 3px 5px;
     border-radius: 30px;
     margin-top: 15px;
     font-size: 1vh;
     white-space: nowrap;
     color: #333;
-    background-color: rgba(255, 255, 255, 0.8);
-    transform: translateY(-50px);
+    background-color: rgba(255, 0, 0, 0.7);
+    transform: translateY(-4vh);
+}
+
+.scanner .score {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10vw;
+    padding: 0.6vw 1vw;
+    border-radius: 8vw;
+    font-size: 1.8vh;
+    font-weight: 500;
+    white-space: nowrap;
+    background-color: var(--color-whiteSmoke);
+    color: black;
+    transform: translateY(-6vh);
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
 }
 
 .tipMarker {
@@ -225,63 +243,4 @@
     opacity: 0.7;
     transform: translate(-50%, -50%);
 }
-
-
-
-
-
-
-
-
-
-/*==============================================================>> Game Info */
-/*
-.container-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 90%;
-    height: 80px;
-    border-radius: 50px;
-    margin-top: 30px;
-    background-color: var(--color-whiteSmoke);
-}
-
-.container-info .info {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-width: 200px;
-    font-size: var(--font-size4);
-    font-weight: 500;
-}
-
-.container-info .button-group {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    min-width: 200px;
-}
-
-.container-info .button-group button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50px;
-    height: 50px;
-    margin: 15px;
-    border: none;
-    border-radius: 50%;
-    background-color: var(--color-blue);
-    font-size: 25px;
-    color: var(--color-whiteSmoke);
-}
-
-.container-info .button-group button.red {
-    background-color: var(--color-red);
-}
-*/
-
-
-
 
