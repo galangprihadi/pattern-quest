@@ -110,11 +110,7 @@ class Reader {
         
         // Read Distances
         if (touches.length >= 2 && this.isActive) {
-            this.isActive = false;
-
-            setInterval(() => {
-                this.isActive = true;
-            }, 500);
+            this.isActive = false;          
 
             for (let i=0; i < touches.length; i++) {
                 // Read each tip
@@ -140,6 +136,10 @@ class Reader {
         }
         else if (touches.length === 0) {
             if (this.infoMode) this.eInfo.textContent = "No Touch";
+
+            setTimeout(() => {
+                this.isActive = true;
+            }, 500);
         }
         else {
             // Delete tip markers
@@ -149,6 +149,8 @@ class Reader {
                     delete this.markers[touchId];
                 }
             });
+
+            
         }
 
         this.pixelValue = this.getPixelValue(touchPos);
