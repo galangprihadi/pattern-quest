@@ -87,6 +87,7 @@ class Reader {
         this.markers = {};
 
         this.eScanner.removeAttribute("style");
+        this.eScore.textContent = this.score;
     }
 
     setDistanceRef(numOfTags) {

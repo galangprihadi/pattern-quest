@@ -75,8 +75,6 @@ class GameEngine {
     }
 
     resetLevel() {
-        
-
         this.curAnswer = [0, 0, 0];
         this.tempScore = [0, 0, 0];
         
@@ -118,9 +116,25 @@ class GameEngine {
                     this.readerA.updateScore(this.tempScore[0]);
                     this.readerB.updateScore(this.tempScore[1]);
                     this.readerC.updateScore(this.tempScore[2]);
+
                     this.gameRunning = this.question.nextQuestion(true);
                 }
                 else {
+                    // Player A checking
+                    if (this.readerA.TagId == this.question.combCode[0] || this.readerA.TagId == this.question.combCode[1] || this.readerA.TagId == this.question.combCode[2]) {
+                        this.readerA.updateScore(this.tempScore[0]);
+                    }
+
+                    // Player B checking
+                    if (this.readerB.TagId == this.question.combCode[0] || this.readerB.TagId == this.question.combCode[1] || this.readerB.TagId == this.question.combCode[2]) {
+                        this.readerB.updateScore(this.tempScore[1]);
+                    }
+
+                    // Player C checking
+                    if (this.readerC.TagId == this.question.combCode[0] || this.readerC.TagId == this.question.combCode[1] || this.readerC.TagId == this.question.combCode[2]) {
+                        this.readerC.updateScore(this.tempScore[2]);
+                    }
+
                     this.gameRunning = this.question.nextQuestion(false);
                 }
 
