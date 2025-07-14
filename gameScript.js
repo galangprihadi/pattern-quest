@@ -61,9 +61,6 @@ btnStart.addEventListener("click", () => {
 // Button Play Again
 const btnPlayAgain = document.getElementById("btnPlayAgain");
 btnPlayAgain.addEventListener("click", () => {
-    //this.question.reload();
-    //this.gameRunning = true;
-
     game.question.reload();
     game.gameRunning = true;
     layerStart.style.display = "flex";

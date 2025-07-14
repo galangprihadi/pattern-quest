@@ -15,7 +15,7 @@ class Reader {
 
     constructor(rData) {
         // Configuration
-        this.toleranceRange = 4;    // Tolerance value for reading process (in pixel)
+        
         this.numOfTagIds = 12;      // Number of tag ids used in game
 
         // Variables
@@ -34,8 +34,9 @@ class Reader {
 
         this.minDistance = parseFloat(localStorage.getItem("minDistance")) || 80;   // Shortest tip distance of Screen Tag (in pixel)
         this.maxDistance = parseFloat(localStorage.getItem("maxDistance")) || 182;  // Longest tip distance of Screen Tag (in pixel)
-
+        this.toleranceRange = 3;                                                    // Tolerance value for reading process (in pixel)
         this.distanceRef = this.setDistanceRef(12);     // Calculate each tip distance (12 tip distances)
+        this.isActive = true;
         
         // Generating the scanner
         this.eContainer = document.querySelector(".container-scanner");
@@ -44,10 +45,11 @@ class Reader {
 
         this.eScanner.addEventListener("touchstart", (event) => {
             this.readTag(event);
+            
         });
 
         this.eScanner.addEventListener("touchmove", (event) => {
-            this.readTag(event);
+            //this.readTag(event);
         });
 
         this.eScanner.addEventListener("touchend", (event) => {
@@ -80,6 +82,7 @@ class Reader {
     setDistanceRef(numOfTags) {
         let distances = [this.minDistance];
         const gap = (this.maxDistance - this.minDistance) / (numOfTags - 1);
+        this.toleranceRange = gap/2;
 
         for (let i=1; i < numOfTags; i++) {
             distances.push(distances[i-1] + gap);
@@ -95,7 +98,13 @@ class Reader {
         const touchPos = [];
         
         // Read Distances
-        if (touches.length >= 2) {
+        if (touches.length >= 2 && this.isActive) {
+            this.isActive = false;
+
+            setInterval(() => {
+                this.isActive = true;
+            }, 500);
+
             for (let i=0; i < touches.length; i++) {
                 // Read each tip
                 const touch = touches[i];
@@ -130,6 +139,7 @@ class Reader {
                 }
             });
         }
+
 
         this.pixelValue = this.getPixelValue(touchPos);
         this.TagId = this.getTagId(touchPos);
@@ -177,7 +187,7 @@ class Reader {
             }
         }
         
-        if (touchPos.length == 2) {
+        if (touchPos.length >= 2) {
             switch (tipId) {
                 case 1 : return 1;
                 case 2 : return 2;
