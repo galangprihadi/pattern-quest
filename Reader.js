@@ -85,9 +85,12 @@ class Reader {
         this.TagId = 0;
         this.pixelValue = 0;
         this.markers = {};
-
-        this.eScanner.removeAttribute("style");
         this.eScore.textContent = this.score;
+
+        setTimeout(() => {
+            this.eScanner.removeAttribute("style");
+        }, 1000);
+        
     }
 
     setDistanceRef(numOfTags) {

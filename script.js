@@ -2,7 +2,7 @@
 ///////////////////////////////////////////       GENERAL FUNCTIONS
 //////////////////////////////////////////===========================
 
-//Fullscreen Button Function
+// Fullscreen Button Function
 const btnFullscreen = document.getElementById("btnFullscreen");
 btnFullscreen.addEventListener("click", ()=>{
     if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
@@ -36,8 +36,14 @@ btnFullscreen.addEventListener("click", ()=>{
 });
 
 
-//Home Button Function
+// Home Button Function
 const btnHome = document.getElementById("btnHome");
 btnHome.addEventListener("click", ()=>{
     window.location.href = "index.html";
 });
+
+
+// Load Page Function
+function loadPage(destination) {
+    window.location.href = destination;
+}

@@ -77,7 +77,7 @@ class GameEngine {
     resetLevel() {
         this.curAnswer = [0, 0, 0];
         this.tempScore = [0, 0, 0];
-        
+
         this.readerA.resetLevel();
         this.readerB.resetLevel();
         this.readerC.resetLevel();

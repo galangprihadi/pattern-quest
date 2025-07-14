@@ -1,5 +1,12 @@
 
 
+/*==============================================================>> Layer Main */
+
+.layer-main {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)), url("images/bgGame.png");
+}
+
+
 /*==============================================================>> Game Info Panel */
 
 .info-panel .info {

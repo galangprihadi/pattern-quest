@@ -4,9 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Home</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
 </head>
 <body>
-    <a href="calibration.html">Calibration</a><br>
-    <a href="game1.html">Game Page</a>
+    
+    <!-- Game Layer (Game Background) -->
+    <div class="layer-main">
+        <img src="images/logo.png" alt="Logo">
+        <button onclick="loadPage('game1.html')">Basic Pattern Game</button>
+        <button>Character Pattern Game</button>
+        <button onclick="loadPage('calibration.html')" class="red">Calibrate Screen Tag</button>
+        <button class="green">About App</button>
+    </div>
+
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+
 </body>
 </html>
