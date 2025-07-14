@@ -3,7 +3,7 @@
 //////////////////////////////////////////===========================
 
 const game = new GameEngine({
-    numOfQuestions: 3,
+    numOfQuestions: 5,
     duration: 63,
     patternPaths: [
         "images/patterns/patA1.png",

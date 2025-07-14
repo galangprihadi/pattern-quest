@@ -100,10 +100,12 @@ class Question {
 
     nextQuestion(isCorrect) {
         if (isCorrect) {
-            this.eQuestion.style.backgroundColor = "var(--color-correct)";
+            //this.eQuestion.style.backgroundColor = "var(--color-correct)";
+            this.eQuestion.style.backgroundImage = `url("images/patterns/correct.png")`;
         }
         else {
-            this.eQuestion.style.backgroundColor = "var(--color-incorrect)";
+            //this.eQuestion.style.backgroundColor = "var(--color-incorrect)";
+            this.eQuestion.style.backgroundImage = `url("images/patterns/incorrect.png")`;
         }
 
         this.currentQuestion += 1;
