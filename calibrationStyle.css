@@ -9,6 +9,17 @@
     background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)), url("images/bgGame.png");
 }
 
+.layer-main button {   
+    margin-top: 3vh;
+    padding: 2vw 4vw;
+    border-radius: 20vw;
+    border: none;
+    background-color: var(--color-red);
+    color: white;
+    font-weight: bold;
+    font-size: 3vw;
+    box-shadow: inset -2px -2px 5px rgba(0, 0, 0, 0.4), 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
 
 /*==============================================================>> Scanner */
 

@@ -45,22 +45,36 @@ document.addEventListener('DOMContentLoaded', () => {
 const btnStart = document.getElementById("btnStart");
 btnStart.addEventListener("click", () => {
     if (localStorage.getItem("minDistance") !== null && localStorage.getItem("minDistance") !== null) {
+        audioPlayer("button");
 
-        // Hide Start Panel
-        layerStart.style.display = "none";
+        setTimeout(() => {
+            // Hide Start Panel
+            layerStart.style.display = "none";
 
-        //Start Game
-        game.startGame();
+            // Start Game
+            game.startGame();
+
+            // Play BGM
+            audioPlayer("bgStart");
+        }, 500);
 
     }
     else {
-        window.location.href = "calibration.html";
+        audioPlayer("button");
+
+        setTimeout(() => {
+            window.location.href = "calibration.html";
+        }, 500);
+        
     }
 });
 
 // Button Play Again
 const btnPlayAgain = document.getElementById("btnPlayAgain");
 btnPlayAgain.addEventListener("click", () => {
+
+    audioPlayer("button");
+
     game.question.reload();
     game.gameRunning = true;
     layerStart.style.display = "flex";

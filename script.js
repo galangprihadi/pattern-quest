@@ -4,7 +4,10 @@
 
 // Fullscreen Button Function
 const btnFullscreen = document.getElementById("btnFullscreen");
-btnFullscreen.addEventListener("click", ()=>{
+if (btnFullscreen) btnFullscreen.addEventListener("click", ()=>{
+
+    audioPlayer("button");
+
     if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
         if (document.exitFullscreen) {
             document.exitFullscreen();
@@ -38,12 +41,53 @@ btnFullscreen.addEventListener("click", ()=>{
 
 // Home Button Function
 const btnHome = document.getElementById("btnHome");
-btnHome.addEventListener("click", ()=>{
-    window.location.href = "index.html";
+if (btnHome) btnHome.addEventListener("click", ()=>{
+    audioPlayer("button");
+
+    setTimeout(() => {
+        window.location.href = "index.html";
+    }, 500);
 });
 
 
 // Load Page Function
 function loadPage(destination) {
-    window.location.href = destination;
+    audioPlayer("button");
+
+    setTimeout(() => {
+        window.location.href = destination;
+    }, 500);
+}
+
+// Sounds Function
+const soundButton = document.getElementById("soundButton");
+const soundTag = document.getElementById("soundTag");
+const soundBg = document.getElementById("soundBg");
+const soundCorrect = document.getElementById("soundCorrect");
+const soundFail = document.getElementById("soundFail");
+
+function audioPlayer(soundId) {
+    if (soundId == "button" && soundButton) {
+        soundButton.currentTime = 0;
+        soundButton.play();
+    }
+    else if (soundId == "tag" && soundTag) {
+        soundTag.currentTime = 0;
+        soundTag.play();
+    }
+    else if (soundId == "bgStart" && soundBg) {
+        soundBg.currentTime = 0;
+        soundBg.play();
+    }
+    else if (soundId == "bgStop" && soundBg) {
+        soundBg.pause();
+    }
+    else if (soundId == "correct" && soundCorrect && soundBg) {
+        soundCorrect.currentTime = 0;
+        soundCorrect.play();
+    }
+    else if (soundId == "fail" && soundFail && soundBg) {
+        soundFail.currentTime = 0;
+        soundFail.play();
+    }
 }

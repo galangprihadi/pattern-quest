@@ -28,6 +28,12 @@ const cal = {
 
 
 document.addEventListener('DOMContentLoaded', () => {
+    const btnOk = document.getElementById("btnOk");
+    btnOk.addEventListener("click", ()=>{
+        audioPlayer("button");
+        btnOk.style.display = "none";
+    })
+
     frameLoop();
 });
 
@@ -80,7 +86,10 @@ function frameLoop(){
         localStorage.setItem("minDistance", meanA);
         localStorage.setItem("maxDistance", meanB);
 
-        window.location.href = "index.html";
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 500);
+        
     }
     else {
         requestAnimationFrame(()=>{

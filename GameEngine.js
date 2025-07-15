@@ -112,6 +112,9 @@ class GameEngine {
 
             if (playerAnswers[0] > 0 && playerAnswers[1] > 0 && playerAnswers[2] > 0 ) {
                 if (JSON.stringify(this.question.combCode) === JSON.stringify(playerAnswers)) {
+
+                    audioPlayer("correct");
+
                     this.teamScore += this.timer.getScore();
                     this.readerA.updateScore(this.tempScore[0]);
                     this.readerB.updateScore(this.tempScore[1]);
@@ -120,6 +123,9 @@ class GameEngine {
                     this.gameRunning = this.question.nextQuestion(true);
                 }
                 else {
+
+                    audioPlayer("fail");
+
                     // Player A checking
                     if (this.readerA.TagId == this.question.combCode[0] || this.readerA.TagId == this.question.combCode[1] || this.readerA.TagId == this.question.combCode[2]) {
                         this.readerA.updateScore(this.tempScore[0]);
@@ -154,6 +160,12 @@ class GameEngine {
         }
         else {
             setTimeout(() => {
+                audioPlayer("bgStop");
+
+                this.eTextScore.textContent = `${this.teamScore} | ${this.readerA.score} | ${this.readerB.score} | ${this.readerC.score}`;
+
+                //this.eTextScore.textContent = "-";
+                this.eTextTime.textContent = "-";
                 this.eGameOverPanel.style.display = "flex";
             }, 1000);
             

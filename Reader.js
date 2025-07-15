@@ -47,7 +47,6 @@ class Reader {
 
         this.eScanner.addEventListener("touchstart", (event) => {
             this.readTag(event);
-            
         });
 
         this.eScanner.addEventListener("touchmove", (event) => {
@@ -113,7 +112,8 @@ class Reader {
         
         // Read Distances
         if (touches.length >= 2 && this.isActive) {
-            this.isActive = false;          
+            audioPlayer("tag");
+            this.isActive = false;
 
             for (let i=0; i < touches.length; i++) {
                 // Read each tip
