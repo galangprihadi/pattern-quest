@@ -2,25 +2,6 @@
 ///////////////////////////////////////////     GAME INITIALIZATION
 //////////////////////////////////////////===========================
 
-const game = new GameEngine({
-    numOfQuestions: 5,
-    duration: 63,
-    patternPaths: [
-        "images/patterns/patA1.png",
-        "images/patterns/patA2.png",
-        "images/patterns/patA3.png",
-        "images/patterns/patA4.png",
-        "images/patterns/patA5.png",
-        "images/patterns/patA6.png",
-        "images/patterns/patA7.png",
-        "images/patterns/patA8.png",
-        "images/patterns/patA9.png",
-        "images/patterns/patA10.png",
-        "images/patterns/patA11.png",
-        "images/patterns/patA12.png"
-    ]
-});
-
 //Start Game Panel
 const layerStart = document.querySelector(".layer-start");
 
