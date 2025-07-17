@@ -26,7 +26,6 @@ const cal = {
     counterB: document.getElementById("counterB"),
 };
 
-
 document.addEventListener('DOMContentLoaded', () => {
     const btnOk = document.getElementById("btnOk");
     btnOk.addEventListener("click", ()=>{
@@ -96,6 +95,4 @@ function frameLoop(){
             frameLoop();
         });
     }
-
-    
 }

@@ -7,17 +7,17 @@
 //     GameEngine          //
 //       |--> Question     //
 //       |--> Reader       //
-//       |--> Score        //
+//       |--> Timer        //
 //                         //
 //=========================//
 
 
 class Reader {
 
-    constructor(rData) {
-        // Configuration
-        this.numOfTagIds = 12;      // Number of tag ids used in game
+    // Configuration
+    numOfTagIds = 12;
 
+    constructor(rData) {
         // Variables
         this.TagId = 0;
         this.pixelValue = 0;
@@ -25,6 +25,7 @@ class Reader {
         this.markers = {};
 
         // Init
+        this.stageDelay = rData.stageDelay || 1000;
         this.scoreMode = rData.scoreMode || false;
         this.markerMode = rData.markerMode || false;                // To display a mark at each touch point (development process)
         this.infoMode = rData.infoMode || false;                    // To display screen tag reading information (development process)
@@ -88,8 +89,7 @@ class Reader {
 
         setTimeout(() => {
             this.eScanner.removeAttribute("style");
-        }, 1000);
-        
+        }, this.stageDelay);
     }
 
     setDistanceRef(numOfTags) {
@@ -152,8 +152,6 @@ class Reader {
                     delete this.markers[touchId];
                 }
             });
-
-            
         }
 
         this.pixelValue = this.getPixelValue(touchPos);

@@ -1,5 +1,5 @@
 ////////////////////////////////////////////=========================
-///////////////////////////////////////////             SCORE CLASS
+///////////////////////////////////////////             TIMER CLASS
 //////////////////////////////////////////===========================
 
 //==== Class Structure ====//
@@ -7,19 +7,18 @@
 //     GameEngine          //
 //       |--> Question     //
 //       |--> Reader       //
-//       |--> Score        //
+//       |--> Timer        //
 //                         //
 //=========================//
 
 
 class Timer {
+    
     constructor (sData) {
         this.duration = sData.duration;
-        this.min = 0;
-        this.sec = 0;
-        this.timerText = "-";
-
-        //this.startTimer();
+        this.min = parseInt(this.duration / 60, 10);
+        this.sec = parseInt(this.duration % 60, 10);
+        this.timerText = `${this.min < 10 ? "0" + this.min : this.min}:${this.sec < 10 ? "0" + this.sec : this.sec}`;
     }
 
     startTimer() {

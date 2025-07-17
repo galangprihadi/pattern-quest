@@ -7,13 +7,14 @@
 //     GameEngine          //
 //       |--> Question     //
 //       |--> Reader       //
-//       |--> Score        //
+//       |--> Timer        //
 //                         //
 //=========================//
 
 
 class Question {
     
+    // Configuration
     pattCode = [
         [1, 5, 9], [1, 5, 10], [1, 5, 11], [1, 5, 12], [1, 6, 9], [1, 6, 10], [1, 6, 11], [1, 6, 12], 
         [1, 7, 9], [1, 7, 10], [1, 7, 11], [1, 7, 12], [1, 8, 9], [1, 8, 10], [1, 8, 11], [1, 8, 12],
@@ -26,6 +27,7 @@ class Question {
     ];
 
     constructor(qData) {
+        this.stageDelay = qData.stageDelay;
         this.numOfQuestions = qData.numOfQuestions;
         this.pattPaths = qData.patternPaths;
 
@@ -95,16 +97,13 @@ class Question {
         if (img1 && img2 && img3) {
             this.eQuestion.style.backgroundImage = `url("${img1.src}"), url("${img2.src}"), url("${img3.src}")`
         }
-        
     }
 
     nextQuestion(isCorrect) {
         if (isCorrect) {
-            //this.eQuestion.style.backgroundColor = "var(--color-correct)";
             this.eQuestion.style.backgroundImage = `url("images/patterns/correct.png")`;
         }
         else {
-            //this.eQuestion.style.backgroundColor = "var(--color-incorrect)";
             this.eQuestion.style.backgroundImage = `url("images/patterns/incorrect.png")`;
         }
 
@@ -114,14 +113,14 @@ class Question {
             setTimeout(() => {
                 this.eQuestion.removeAttribute("style");
                 this.setQuestion();
-            }, 1000);
+            }, this.stageDelay);
             
             return true;
         }
         else {
             setTimeout(() => {
                 this.eQuestion.removeAttribute("style");
-            }, 1000);
+            }, this.stageDelay);
 
             return false;
         }

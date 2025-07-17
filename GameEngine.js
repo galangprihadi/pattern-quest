@@ -7,23 +7,27 @@
 //     GameEngine          //
 //       |--> Question     //
 //       |--> Reader       //
-//       |--> Score        //
+//       |--> Timer        //
 //                         //
 //=========================//
 
 
 class GameEngine {
+
+    // Configuration
+    stageDelay = 1000;      // in miliseconds
     
     constructor(geData) {
-
         // Question
         this.question = new Question({
+            stageDelay: this.stageDelay,
             numOfQuestions: geData.numOfQuestions,
             patternPaths: geData.patternPaths,
         });
 
-        // Reader
+        // Screen Tag Readers
         this.readerA = new Reader({
+            stageDelay: this.stageDelay,
             scoreMode: true,
             markerMode: false,
             infoMode: false,
@@ -31,6 +35,7 @@ class GameEngine {
         });
 
         this.readerB = new Reader({
+            stageDelay: this.stageDelay,
             scoreMode: true,
             markerMode: false,
             infoMode: false,
@@ -38,6 +43,7 @@ class GameEngine {
         });
 
         this.readerC = new Reader({
+            stageDelay: this.stageDelay,
             scoreMode: true,
             markerMode: false,
             infoMode: false,
@@ -57,7 +63,8 @@ class GameEngine {
         this.eScoreB = document.getElementById("score-b");
         this.eScoreC = document.getElementById("score-c");
 
-        this.penalty = geData.duration;
+        this.numOfQuestions = geData.numOfQuestions;
+        this.duration = geData.duration;
     }
 
     startGame() {
@@ -66,9 +73,8 @@ class GameEngine {
         this.readerB.score = 0;
         this.readerC.score = 0;
 
-        this.resetLevel();
-
         setTimeout(() => {
+            this.resetLevel();
             this.gameRunning = true;
             this.gameLoop();
         }, 1000);
@@ -110,7 +116,7 @@ class GameEngine {
             let playerAnswers = [this.readerA.TagId, this.readerB.TagId, this.readerC.TagId];
             playerAnswers = playerAnswers.sort(function(a, b){return a - b});
 
-            if (playerAnswers[0] > 0 && playerAnswers[1] > 0 && playerAnswers[2] > 0 ) {
+            if ((playerAnswers[0] > 0 && playerAnswers[1] > 0 && playerAnswers[2] > 0) || this.timer.timerDuration <= 0) {
                 if (JSON.stringify(this.question.combCode) === JSON.stringify(playerAnswers)) {
 
                     audioPlayer("correct");
@@ -162,13 +168,39 @@ class GameEngine {
             setTimeout(() => {
                 audioPlayer("bgStop");
 
-                this.eTextScore.textContent = `${this.teamScore} | ${this.readerA.score} | ${this.readerB.score} | ${this.readerC.score}`;
-
-                //this.eTextScore.textContent = "-";
+                // Game Over
+                this.eTextScore.textContent = "-";
                 this.eTextTime.textContent = "-";
                 this.eGameOverPanel.style.display = "flex";
-            }, 1000);
+
+                this.eScoreTeam.innerHTML = this.toStar(this.teamScore);
+                this.eScoreA.innerHTML = this.toStar(this.readerA.score);
+                this.eScoreB.innerHTML = this.toStar(this.readerB.score);
+                this.eScoreC.innerHTML = this.toStar(this.readerC.score);
+            }, this.stageDelay);
             
         }
+    }
+
+    toStar(score) {
+        const maxStar = 5;
+        const extraScore = 50;
+
+        const convertedScore = (score + extraScore) / this.numOfQuestions / (100 / maxStar);
+
+        const fullStar = Math.floor(convertedScore);
+        const halfStar = convertedScore % 1;
+
+        let stars = "";
+
+        for (let i=0; i < fullStar; i++) {
+            stars += `<i class="fa-solid fa-star"></i>`;
+        }
+
+        if (halfStar > 0.5) {
+            stars += `<i class="fa-solid fa-star-half"></i>`;
+        }
+        
+        return stars;
     }
 }
