@@ -20,7 +20,7 @@
         <img src="images/logo.png" alt="Logo">
         <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. 
             Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. </p>
-        <button onclick="loadPage('index.html', this)" class="green">Back to Main Menu</button>
+        <button onclick="loadPage('index.html', this)" class="red">Back to Main Menu</button>
     </div>
 
 
@@ -38,9 +38,17 @@
             loop: true,
         });
 
-        animate (["button", "p"], {
+        animate ("p", {
+            delay: 100,
             opacity: [0, 1],
-            scale: [1, 0.7, 1.2, 0.9, 1],
+            scale: [0.7, 1.1, 0.9, 1],
+            duration: 1000,
+        });
+
+        animate ("button", {
+            delay: 200,
+            opacity: [0, 1],
+            scale: [0.7, 1.2, 0.9, 1],
             duration: 1000,
         });
         

@@ -53,6 +53,8 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
+
+    opacity: 0;
 }
 
 .scanner .info {

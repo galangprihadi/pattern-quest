@@ -47,6 +47,8 @@ body {
     background-color: var(--color-whiteSmoke);
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
     z-index: 10;
+
+    opacity: 0;
 }
 
 .info-panel .info {
@@ -126,6 +128,8 @@ body {
     font-weight: bold;
     font-size: 3vw;
     box-shadow: inset -2px -2px 5px rgba(0, 0, 0, 0.4), 2px 2px 5px rgba(0, 0, 0, 0.3);
+
+    opacity: 0;
 }
 
 .layer-main button.red {
