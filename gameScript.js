@@ -59,7 +59,7 @@ btnPlayAgain.addEventListener("click", () => {
 
     audioPlayer("button");
 
-    animate (btnStart, {
+    animate (btnPlayAgain, {
         scale: [1, 1.1, 0.9, 1.1, 1],
         duration: 500,
     });
