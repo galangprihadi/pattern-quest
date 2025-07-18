@@ -115,6 +115,11 @@ class Reader {
             audioPlayer("tag");
             this.isActive = false;
 
+            animate (this.eScanner, {
+                scale: [1, 1.1, 0.9, 1.1, 1],
+                duration: 500,
+            });
+
             for (let i=0; i < touches.length; i++) {
                 // Read each tip
                 const touch = touches[i];

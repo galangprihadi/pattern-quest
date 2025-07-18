@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Main Menu</title>
+    <title>About Game</title>
     <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="aboutStyle.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css">
 </head>
 <body>
@@ -17,10 +18,9 @@
     <!-- Game Layer (Game Background) -->
     <div class="layer-main">
         <img src="images/logo.png" alt="Logo">
-        <button onclick="loadPage('game1.html', this)">Classic Pattern Game</button>
-        <button onclick="loadPage('game2.html', this)">Character Pattern Game</button>
-        <button onclick="loadPage('calibration.html', this)" class="red">Calibrate Screen Tag</button>
-        <button onclick="loadPage('about.html', this)" class="green">About App</button>
+        <p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. 
+            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. </p>
+        <button onclick="loadPage('index.html', this)" class="green">Back to Main Menu</button>
     </div>
 
 
@@ -38,11 +38,12 @@
             loop: true,
         });
 
-        animate ("button", {
+        animate (["button", "p"], {
             opacity: [0, 1],
             scale: [1, 0.7, 1.2, 0.9, 1],
             duration: 1000,
         });
+        
     </script>
 
 </body>

@@ -18,31 +18,27 @@
     <div class="layer-main">
         <img src="images/logo.png" alt="Logo">
         <button onclick="loadPage('game1.html', this)">Classic Pattern Game</button>
-        <button onclick="loadPage('game2.html', this)">Character Pattern Game</button>
-        <button onclick="loadPage('calibration.html', this)" class="red">Calibrate Screen Tag</button>
-        <button onclick="loadPage('about.html', this)" class="green">About App</button>
+        <button onclick="loadPage('game2.html')">Character Pattern Game</button>
+        <button onclick="loadPage('calibration.html')" class="red">Calibrate Screen Tag</button>
+        <button class="green">About App</button>
     </div>
 
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/animejs/lib/anime.iife.min.js"></script>
     <script src="script.js"></script>
+    
 
     <script>
         const { animate } = anime;
 
         animate ("img", {
             scale: 0.95,
-            duration: 2000,
+            duration: 1000,
             alternate: true,
             loop: true,
         });
 
-        animate ("button", {
-            opacity: [0, 1],
-            scale: [1, 0.7, 1.2, 0.9, 1],
-            duration: 1000,
-        });
     </script>
 
 </body>

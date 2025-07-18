@@ -42,9 +42,35 @@
 
 
     <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/animejs/lib/anime.iife.min.js"></script>
     <script src="script.js"></script>
     <script src="Reader.js"></script>
     <script src="calibration.js"></script>
+
+    <script>
+
+        // Animation
+        const { animate } = anime;
+
+        animate (".info-panel", {
+            opacity: [0, 1],
+            scale: [1, 0.8, 1.1, 0.9, 1],
+            duration: 1000,
+        });
+
+        animate ("button", {
+            opacity: [0, 1],
+            scale: [1, 0.7, 1.2, 0.9, 1],
+            duration: 1000,
+        });
+
+        animate (".scanner", {
+            opacity: [0, 1],
+            scale: [1, 0.7, 1.2, 0.9, 1],
+            duration: 1000,
+        });
+
+    </script>
 
 </body>
 </html>

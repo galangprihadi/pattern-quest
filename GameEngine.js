@@ -177,6 +177,7 @@ class GameEngine {
                 this.eScoreA.innerHTML = this.toStar(this.readerA.score);
                 this.eScoreB.innerHTML = this.toStar(this.readerB.score);
                 this.eScoreC.innerHTML = this.toStar(this.readerC.score);
+
             }, this.stageDelay);
             
         }
@@ -203,4 +204,5 @@ class GameEngine {
         
         return stars;
     }
+
 }

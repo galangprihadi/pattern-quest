@@ -25,9 +25,14 @@ document.addEventListener('DOMContentLoaded', () => {
 // Button Start Game
 const btnStart = document.getElementById("btnStart");
 btnStart.addEventListener("click", () => {
-    if (localStorage.getItem("minDistance") !== null && localStorage.getItem("minDistance") !== null) {
-        audioPlayer("button");
+    audioPlayer("button");
 
+    animate (btnStart, {
+        scale: [1, 1.1, 0.9, 1.1, 1],
+        duration: 500,
+    });
+    
+    if (localStorage.getItem("minDistance") !== null && localStorage.getItem("minDistance") !== null) {
         setTimeout(() => {
             // Hide Start Panel
             layerStart.style.display = "none";
@@ -41,8 +46,6 @@ btnStart.addEventListener("click", () => {
 
     }
     else {
-        audioPlayer("button");
-
         setTimeout(() => {
             window.location.href = "calibration.html";
         }, 500);
@@ -56,8 +59,16 @@ btnPlayAgain.addEventListener("click", () => {
 
     audioPlayer("button");
 
-    game.question.reload();
-    game.gameRunning = true;
-    layerStart.style.display = "flex";
-    game.eGameOverPanel.style.display = "none";
+    animate (btnStart, {
+        scale: [1, 1.1, 0.9, 1.1, 1],
+        duration: 500,
+    });
+
+    setTimeout(() => {
+        game.question.reload();
+        game.gameRunning = true;
+        layerStart.style.display = "flex";
+        game.eGameOverPanel.style.display = "none";
+    }, 500);
+    
 });

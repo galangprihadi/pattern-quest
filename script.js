@@ -44,6 +44,11 @@ const btnHome = document.getElementById("btnHome");
 if (btnHome) btnHome.addEventListener("click", ()=>{
     audioPlayer("button");
 
+    animate (btnHome, {
+        scale: [1, 1.1, 0.9, 1.1, 1],
+        duration: 500,
+    });
+
     setTimeout(() => {
         window.location.href = "index.html";
     }, 500);
@@ -51,8 +56,13 @@ if (btnHome) btnHome.addEventListener("click", ()=>{
 
 
 // Load Page Function
-function loadPage(destination) {
+function loadPage(destination, element) {
     audioPlayer("button");
+
+    animate (element, {
+        scale: [1, 1.1, 0.9, 1.1, 1],
+        duration: 500,
+    });
 
     setTimeout(() => {
         window.location.href = destination;

@@ -97,6 +97,13 @@ class Question {
         if (img1 && img2 && img3) {
             this.eQuestion.style.backgroundImage = `url("${img1.src}"), url("${img2.src}"), url("${img3.src}")`
         }
+
+        animate (this.eQuestion, {
+            scale: 0.95,
+            duration: 2000,
+            alternate: true,
+            loop: true,
+        });
     }
 
     nextQuestion(isCorrect) {
