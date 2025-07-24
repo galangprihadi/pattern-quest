@@ -43,4 +43,8 @@ class Timer {
     getScore() {
         return Math.round(100 / this.duration * this.timerDuration);
     }
+
+    stopTimer() {
+        clearInterval(this.timerInterval);
+    }
 }

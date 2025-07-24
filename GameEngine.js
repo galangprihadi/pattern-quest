@@ -74,21 +74,23 @@ class GameEngine {
         this.readerC.score = 0;
 
         setTimeout(() => {
-            this.resetLevel();
+            this.resetLevel(0);
             this.gameRunning = true;
             this.gameLoop();
-        }, 1000);
+        }, 500);
     }
 
-    resetLevel() {
+    resetLevel(timerDelay) {
         this.curAnswer = [0, 0, 0];
         this.tempScore = [0, 0, 0];
 
-        this.readerA.resetLevel();
-        this.readerB.resetLevel();
-        this.readerC.resetLevel();
+        this.readerA.resetLevel(timerDelay);
+        this.readerB.resetLevel(timerDelay);
+        this.readerC.resetLevel(timerDelay);
 
-        this.timer.startTimer();
+        setTimeout(() => {
+            this.timer.startTimer();
+        }, timerDelay);
     }
 
     gameLoop() {
@@ -150,7 +152,8 @@ class GameEngine {
                     this.gameRunning = this.question.nextQuestion(false);
                 }
 
-                this.resetLevel();
+                this.timer.stopTimer();
+                this.resetLevel(this.stageDelay);
             }
         }
 

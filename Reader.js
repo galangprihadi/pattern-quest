@@ -81,7 +81,7 @@ class Reader {
         }
     }
 
-    resetLevel() {
+    resetLevel(timerDelay) {
         this.TagId = 0;
         this.pixelValue = 0;
         this.markers = {};
@@ -89,7 +89,7 @@ class Reader {
 
         setTimeout(() => {
             this.eScanner.removeAttribute("style");
-        }, this.stageDelay);
+        }, timerDelay);
     }
 
     setDistanceRef(numOfTags) {
