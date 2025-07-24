@@ -15,7 +15,7 @@
 class GameEngine {
 
     // Configuration
-    stageDelay = 1000;      // in miliseconds
+    stageDelay = 6000;      // in miliseconds
     
     constructor(geData) {
         // Question
@@ -119,7 +119,7 @@ class GameEngine {
             if ((playerAnswers[0] > 0 && playerAnswers[1] > 0 && playerAnswers[2] > 0) || this.timer.timerDuration <= 0) {
                 if (JSON.stringify(this.question.combCode) === JSON.stringify(playerAnswers)) {
 
-                    audioPlayer("correct");
+                    audioPlayer("correct", this.stageDelay);
 
                     this.teamScore += this.timer.getScore();
                     this.readerA.updateScore(this.tempScore[0]);
@@ -130,7 +130,7 @@ class GameEngine {
                 }
                 else {
 
-                    audioPlayer("fail");
+                    audioPlayer("fail", this.stageDelay);
 
                     // Player A checking
                     if (this.readerA.TagId == this.question.combCode[0] || this.readerA.TagId == this.question.combCode[1] || this.readerA.TagId == this.question.combCode[2]) {
@@ -166,7 +166,8 @@ class GameEngine {
         }
         else {
             setTimeout(() => {
-                audioPlayer("bgStop");
+                //audioPlayer("bgStop");
+                audioPlayer("gameOver");
 
                 // Game Over
                 this.eTextScore.textContent = "-";

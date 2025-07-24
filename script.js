@@ -75,8 +75,9 @@ const soundTag = document.getElementById("soundTag");
 const soundBg = document.getElementById("soundBg");
 const soundCorrect = document.getElementById("soundCorrect");
 const soundFail = document.getElementById("soundFail");
+const soundOver = document.getElementById("soundOver");
 
-function audioPlayer(soundId) {
+function audioPlayer(soundId, bgDelay) {
     if (soundId == "button" && soundButton) {
         soundButton.currentTime = 0;
         soundButton.play();
@@ -95,9 +96,31 @@ function audioPlayer(soundId) {
     else if (soundId == "correct" && soundCorrect && soundBg) {
         soundCorrect.currentTime = 0;
         soundCorrect.play();
+        soundBg.pause();
+
+        setTimeout(() => {
+            soundBg.currentTime = 0;
+            soundBg.play();
+        }, bgDelay);
     }
     else if (soundId == "fail" && soundFail && soundBg) {
         soundFail.currentTime = 0;
         soundFail.play();
+        soundBg.pause();
+
+        setTimeout(() => {
+            soundBg.currentTime = 0;
+            soundBg.play();
+        }, bgDelay);
+    }
+    else if (soundId == "gameOver" && soundOver) {
+        soundOver.currentTime = 0;
+        soundOver.play();
+        soundBg.pause();
+
+        setTimeout(() => {
+            soundBg.currentTime = 0;
+            soundBg.play();
+        }, 7000);
     }
 }

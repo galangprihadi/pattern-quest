@@ -57,6 +57,7 @@ btnStart.addEventListener("click", () => {
 const btnPlayAgain = document.getElementById("btnPlayAgain");
 btnPlayAgain.addEventListener("click", () => {
 
+    audioPlayer("bgStop");
     audioPlayer("button");
 
     animate (btnPlayAgain, {
