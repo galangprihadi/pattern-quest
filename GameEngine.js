@@ -152,6 +152,7 @@ class GameEngine {
                     this.gameRunning = this.question.nextQuestion(false);
                 }
 
+                this.timer.timerDuration = 1;
                 this.timer.stopTimer();
                 this.resetLevel(this.stageDelay);
             }
