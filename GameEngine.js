@@ -173,6 +173,8 @@ class GameEngine {
                 //audioPlayer("bgStop");
                 audioPlayer("gameOver");
 
+                this.timer.stopTimer();
+
                 // Game Over
                 this.eTextScore.textContent = "-";
                 this.eTextTime.textContent = "-";
